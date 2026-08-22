@@ -1,4 +1,6 @@
 {
+  "theme_branch": "master",
+  "theme_version": "3.0.0",
   "imports": "https://shiki-theme.web.app/stable/",
   "palettes": "https://shiki-theme.web.app/palette/"
 }

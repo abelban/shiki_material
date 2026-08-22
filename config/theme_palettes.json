@@ -24,18 +24,21 @@
   {
     "title": "Material 3 — светлая",
     "value": "light",
-    "author": "grin3671",
+    "author": "abelban",
     "scheme": "light",
     "palette": {
-      "color_primary": "#6750a4",
+      "color_primary": "#65558f",
+      "color_text_on_primary": "#ffffff",
       "color_accent": "#625b71",
+      "color_text_on_accent": "#ffffff",
       "color_background": "#fffbfe",
-      "color_menu_background": "#fffbfe"
+      "color_menu_background": "#4f378b",
+      "color_link": "#65558f",
+      "color_link_hover": "#4f378b",
+      "color_link_active": "#7d5260"
     },
     "helpers": [
       "autoMain",
-      "autoMainText",
-      "autoLinks",
       "autoScheme",
       "autoMenu",
       "autoTranslucency"

@@ -52,6 +52,8 @@ vm.builderData.colors = readConfig('colors');
 vm.builderData.imports = readConfig('imports');
 vm.builderData.palettes = readConfig('palettes');
 vm.builderData.sources = readConfig('sources');
+assert.equal(vm.builderData.sources.theme_branch, 'master');
+assert.equal(vm.builderData.sources.theme_version, '3.0.0');
 vm.user.selected_imports = vm.builderData.imports
   .filter((file) => file.checked)
   .map((file) => file.url);
@@ -113,6 +115,24 @@ vm.builderData.palettes.forEach((palette, index) => {
   requiredMaterial3Roles.forEach((role) => {
     assert.match(css, new RegExp('--md-sys-color-' + role + ':\\s*[^;]+;'));
   });
+
+  if (palette.value === 'light') {
+    assert.match(css, /--md-sys-color-primary:\s*#65558f;/);
+    assert.match(css, /--md-sys-color-on-primary:\s*#ffffff;/);
+    assert.match(css, /--md-sys-color-secondary:\s*#625b71;/);
+    assert.match(css, /--md-sys-color-on-secondary:\s*#ffffff;/);
+    assert.match(css, /--md-sys-color-background:\s*#fffbfe;/);
+    assert.match(css, /--color-link:\s*#65558f;/);
+    assert.match(css, /--color-link-hover:\s*#4f378b;/);
+    assert.match(css, /--color-link-active:\s*#7d5260;/);
+    assert.match(css, /--color-menu-background:\s*#4f378b;/);
+    assert.match(css, /--color-menu-text-primary:\s*#f8f7fa;/);
+    assert.match(css, /--color-menu-text-disabled:\s*#a093c0;/);
+    assert.match(css, /--color-menu-icon:\s*#cfc9df;/);
+    assert.match(css, /--color-menu-background-hover:\s*#5d4694;/);
+    assert.match(css, /--color-menu-background-active:\s*#634e98;/);
+    assert.match(css, /--color-menu-search:\s*#634e98;/);
+  }
 });
 
 console.log('Validated ' + vm.builderData.palettes.length + ' palettes and ' + requiredMaterial3Roles.length + ' Material 3 roles.');

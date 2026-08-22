@@ -539,7 +539,7 @@ var vm = new Vue({
     },
     color_text_on_primary: {
       get: function () {
-        return this.currentHelpers.includes('autoMainText') ? this.getMixedColor(this.color_primary, 87) : this.scheme.color_text_on_primary;
+        return this.currentHelpers.includes('autoMainText') ? tinycolor.mostReadable(this.color_primary, ['#fff', '#000']).toHexString() : this.scheme.color_text_on_primary;
       },
       set: function (color) {
         this.scheme.color_text_on_primary = color;
@@ -590,7 +590,7 @@ var vm = new Vue({
     },
     color_text_on_accent: {
       get: function () {
-        return this.currentHelpers.includes('autoMainText') ? this.getMixedColor(this.color_accent, 87) : this.scheme.color_text_on_accent;
+        return this.currentHelpers.includes('autoMainText') ? tinycolor.mostReadable(this.color_accent, ['#fff', '#000']).toHexString() : this.scheme.color_text_on_accent;
       },
       set: function (color) {
         this.scheme.color_text_on_accent = color;
@@ -691,7 +691,7 @@ var vm = new Vue({
     },
     color_menu_text_primary: {
       get: function () {
-        return this.currentHelpers.includes('autoMenu') ? this.getMixedColor(this.color_menu_background, 87) : this.scheme.color_menu_text_primary;
+        return this.currentHelpers.includes('autoMenu') ? this.getMixedColor(this.color_menu_background, 96) : this.scheme.color_menu_text_primary;
       },
       set: function (color) {
         this.scheme.color_menu_text_primary = color;
@@ -699,7 +699,7 @@ var vm = new Vue({
     },
     color_menu_text_disabled: {
       get: function () {
-        return this.currentHelpers.includes('autoMenu') ? this.getMixedColor(this.color_menu_background, 38) : this.scheme.color_menu_text_disabled;
+        return this.currentHelpers.includes('autoMenu') ? tinycolor.mix(this.color_menu_background, this.color_menu_text_primary, 48).toHexString() : this.scheme.color_menu_text_disabled;
       },
       set: function (color) {
         this.scheme.color_menu_text_disabled = color;
@@ -707,7 +707,7 @@ var vm = new Vue({
     },
     color_menu_icon: {
       get: function () {
-        return this.currentHelpers.includes('autoMenu') ? this.getMixedColor(this.color_menu_background, 76) : this.scheme.color_menu_icon;
+        return this.currentHelpers.includes('autoMenu') ? tinycolor.mix(this.color_menu_background, this.color_menu_text_primary, 76).toHexString() : this.scheme.color_menu_icon;
       },
       set: function (color) {
         this.scheme.color_menu_icon = color;
@@ -715,7 +715,7 @@ var vm = new Vue({
     },
     color_menu_search: {
       get: function () {
-        return this.currentHelpers.includes('autoMenu') ? this.getMixedColor(this.color_menu_background, 12) : this.scheme.color_menu_search;
+        return this.currentHelpers.includes('autoMenu') ? tinycolor.mix(this.color_menu_background, this.color_menu_text_primary, 12).toHexString() : this.scheme.color_menu_search;
       },
       set: function (color) {
         this.scheme.color_menu_search = color;
@@ -726,7 +726,7 @@ var vm = new Vue({
     },
     color_menu_background_hover: {
       get: function () {
-        return this.currentHelpers.includes('autoMenu') ? this.getMixedColor(this.color_menu_background, tinycolor(this.color_menu_background).isDark() ? 8 : 4) : this.scheme.color_menu_background_hover;
+        return this.currentHelpers.includes('autoMenu') ? tinycolor.mix(this.color_menu_background, this.color_menu_text_primary, 8).toHexString() : this.scheme.color_menu_background_hover;
       },
       set: function (color) {
         this.scheme.color_menu_background_hover = color;
@@ -734,7 +734,7 @@ var vm = new Vue({
     },
     color_menu_background_active: {
       get: function () {
-        return this.currentHelpers.includes('autoMenu') ? this.getMixedColor(this.color_menu_background, 12) : this.scheme.color_menu_background_active;
+        return this.currentHelpers.includes('autoMenu') ? tinycolor.mix(this.color_menu_background, this.color_menu_text_primary, 12).toHexString() : this.scheme.color_menu_background_active;
       },
       set: function (color) {
         this.scheme.color_menu_background_active = color;
