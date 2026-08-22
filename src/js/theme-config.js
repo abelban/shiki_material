@@ -379,7 +379,7 @@ window.SHIKI_THEME_CONFIG = {
   "imports": [
     {
       "title": "Shiki Material 3 — полная сборка master",
-      "desc": "Версия 3.0.0: основная тема, Material Symbols, обложка профиля и актуальные дополнения.",
+      "desc": "Версия 3.0.0: основная тема, Material Symbols, обычная обложка профиля и актуальные дополнения.",
       "url": "main.css",
       "checked": true
     }

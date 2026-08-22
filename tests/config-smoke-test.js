@@ -182,8 +182,11 @@ const themeCss = fs.readFileSync(path.join(__dirname, '..', 'theme', 'main.css')
 assert.ok(Buffer.byteLength(themeCss) > 250000);
 assert.match(themeCss, /shiki-material3 v3\.0\.0/);
 assert.match(themeCss, /--md-sys-color-primary/);
+assert.match(themeCss, /background-image:var\(--user-cover\)/);
 assert.doesNotMatch(themeCss, /320608/);
 assert.doesNotMatch(themeCss, /body\{background-image:none\}\.p-profiles \.profile-head\[data-user-id=/);
+assert.doesNotMatch(themeCss, /background:var\(--user-cover\) center top\/cover no-repeat fixed/);
+assert.doesNotMatch(themeCss, /#profiles_show \.l-page\{margin-top:352px/);
 assert.equal(embeddedSandbox.window.SHIKI_THEME_CSS, themeCss);
 
 console.log('Validated ' + vm.builderData.palettes.length + ' palettes and ' + requiredMaterial3Roles.length + ' Material 3 roles.');
