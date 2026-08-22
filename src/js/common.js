@@ -391,10 +391,6 @@ var vm = new Vue({
       selected_files: '{}',
       selected_imports: [
         'main.css',
-        'profile-cover.css',
-        'font-roboto.css',
-        'profile-update_1.css',
-        'profile-update_2.css',
       ],
       // Используется только для предпросмотра темы
       avatar: '',
@@ -450,15 +446,6 @@ var vm = new Vue({
     },
     builderStylesheet: undefined,
     snacksTexts: [],
-  },
-  watch: {
-    "user.selected_imports": function () {
-      if (this.user.selected_imports.indexOf('profile-cover.css') == -1) {
-        this.user.selected_layout = 'simple';
-      } else {
-        this.user.selected_layout = 'cover';
-      }
-    },
   },
   computed: {
     // Текст
@@ -847,18 +834,8 @@ var vm = new Vue({
       this.builderUpdate();
     },
     setLayout: function (value) {
-      // Когда пользователь меняет вид профиля удаляем или добавляем css-файл
-      var i = this.user.selected_imports.indexOf('profile-cover.css');
-      switch (value) {
-        case 'cover':
-          if (i < 0) this.user.selected_imports.push('profile-cover.css');
-          break;
-        case 'simple':
-          if (i) this.user.selected_imports.splice(i, 1);
-          break;
-      }
       this.saveLocal('selected_layout', value);
-      this.saveImports();
+      this.builderUpdate();
     },
     checkImage: function (e) {
       var img, type, image;
@@ -940,21 +917,17 @@ var vm = new Vue({
       } else {
         // Если пользователь ничего не менял в файлах то делаем импорт файлов
         let import_url = '@import url("' + this.builderData.sources.imports;
-        let palette_url = '@import url("' + this.builderData.sources.palettes;
-
         let selectedImports;
 
         selectedImports = this.builderData.imports.filter(file => this.user.selected_imports.includes(file.url));
         selectedImports.forEach(file => {
           output_newcss += '/* ' + file.title + ' */\n';
-          output_newcss += import_url + file.url + '");\n';
+          if (file.url === 'main.css' && window.SHIKI_THEME_CSS) {
+            output_newcss += window.SHIKI_THEME_CSS + '\n';
+          } else {
+            output_newcss += import_url + file.url + '");\n';
+          }
         });
-
-        // Оставляем импорт палитры для совместимости со стабильной сборкой.
-        if (this.currentPalette.locked) {
-          output_newcss += '/* Тема «' + this.builderData.palettes[this.currentPalette.index].title + '» */\n';
-          output_newcss += palette_url + this.currentPalette.id.replace(/-/g, '_') + '.css");\n';
-        }
 
         // Всегда выводим полный набор переменных: так стандартные и пользовательские
         // палитры получают одинаковые вычисления Material 3.
@@ -1085,6 +1058,13 @@ var vm = new Vue({
       this.saveLocal('custom_theme', JSON.stringify(localThemes));
     },
     loadUserTheme: function () {
+      let availableImports = this.builderData.imports.map(file => file.url);
+      this.user.selected_imports = this.user.selected_imports.filter(file => availableImports.includes(file));
+      if (this.user.selected_imports.length === 0) {
+        this.user.selected_imports = this.builderData.imports.filter(file => file.checked).map(file => file.url);
+      }
+      this.saveLocal('selected_imports', JSON.stringify(this.user.selected_imports));
+
       // Создаём отдельный список не кастомизирующихся палитр
       this.builderData.lockedPalettes = this.builderData.palettes.map(x => x.value);
       // Объединяем темы в скрипте с загруженными из локальных настроек
@@ -1214,12 +1194,17 @@ var vm = new Vue({
         ],
         iteration = configs.length;
 
-    configs.forEach(file => {
-      XHR('./config/theme_' + file + '.json', config => {
-        this.$set(this.builderData, file, JSON.parse(config));
-        if (--iteration === 0) Vue.nextTick(() => this.loadUserTheme());
+    if (window.SHIKI_THEME_CONFIG) {
+      configs.forEach(file => this.$set(this.builderData, file, window.SHIKI_THEME_CONFIG[file]));
+      Vue.nextTick(() => this.loadUserTheme());
+    } else {
+      configs.forEach(file => {
+        XHR('./config/theme_' + file + '.json', config => {
+          this.$set(this.builderData, file, JSON.parse(config));
+          if (--iteration === 0) Vue.nextTick(() => this.loadUserTheme());
+        });
       });
-    });
+    }
 
 
     // Добавление лайв-стиля

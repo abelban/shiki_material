@@ -1,58 +1,8 @@
 [
   {
-    "title": "Основная тема Material 3",
+    "title": "Shiki Material 3 — полная сборка master",
+    "desc": "Версия 3.0.0: основная тема, Material Symbols, обложка профиля и актуальные дополнения.",
     "url": "main.css",
     "checked": true
-  },
-  {
-    "title": "Стили обложки профиля",
-    "url": "profile-cover.css",
-    "checked": true
-  },
-  {
-    "title": "Полноэкранная обложка",
-    "desc": "Дополнительные стили обложки профиля.",
-    "url": "immersive-cover.css",
-    "checked": false
-  },
-  {
-    "title": "Шрифт Roboto",
-    "url": "font-roboto.css",
-    "checked": true
-  },
-  {
-    "title": "Шрифт Roboto Condensed",
-    "desc": "Компактный вариант шрифта для узких экранов.",
-    "url": "font-roboto_condensed.css",
-    "checked": false
-  },
-  {
-    "title": "Заполненные поля Material 3",
-    "url": "md-textfields.css",
-    "checked": false
-  },
-  {
-    "title": "Изменения профиля #1",
-    "url": "profile-update_1.css",
-    "desc": "Отображение дниметра и тонкие полосы графика активности.",
-    "checked": true
-  },
-  {
-    "title": "Изменения профиля #2",
-    "desc": "Изменение кнопок списка.",
-    "url": "profile-update_2.css",
-    "checked": true
-  },
-  {
-    "title": "Изменения профиля #3",
-    "desc": "Изменение блока активности на сайте.",
-    "url": "profile-update_3.css",
-    "checked": false
-  },
-  {
-    "title": "Анимация переключения истории",
-    "desc": "Для тех, у кого не отображаются полосы аниме и манги в профиле.",
-    "url": "profile-history_animation.css",
-    "checked": false
   }
 ]
