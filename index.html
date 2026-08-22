@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#6750a4">
     <title>Сборщик Shiki Material 3</title>
     <meta name="description" content="Сборщик темы Shiki Material 3 для Shikimori.">
-    <link rel="stylesheet" href="./src/css/common.css?14">
+    <link rel="stylesheet" href="./src/css/common.css?15">
     <style></style>
   </head>
   <body>
@@ -15,20 +15,22 @@
       <header class="topbar">
         <input type="checkbox" id="topbar_menu">
         <div class="menubar">
-          <label for="topbar_menu" class="md-icon" data-icon="menu">
+          <label for="topbar_menu" class="menu-button" aria-label="Открыть навигацию">
+            <span class="md-icon" data-icon="menu" aria-hidden="true"></span>
           </label><h1 class="topbar-title">Shiki Material 3</h1>
         </div>
-        <label for="copy_css" class="md-fab" :class="{ hidden: status.isFileLoading }">
-          <span class="md-icon" data-icon="content_copy"></span>
+        <label for="copy_css" class="md-fab" :class="{ hidden: status.isFileLoading }" aria-label="Скопировать готовую тему">
+          <span class="md-icon" data-icon="content_copy" aria-hidden="true"></span>
+          <span class="md-fab__label">Скопировать тему</span>
         </label>
         <label for="topbar_menu" class="shade"></label>
         <nav>
-          <a href="#nav_settings">Настройка темы</a>
-          <a href="#nav_preview">Предпросмотр</a>
-          <a href="#nav_code">Готовый стиль</a>
+          <a href="#nav_settings"><span class="md-icon" data-icon="tune" aria-hidden="true"></span><span>Настройка темы</span></a>
+          <a href="#nav_preview"><span class="md-icon" data-icon="preview" aria-hidden="true"></span><span>Предпросмотр</span></a>
+          <a href="#nav_code"><span class="md-icon" data-icon="code" aria-hidden="true"></span><span>Готовый стиль</span></a>
           <hr class="md-divider">
-          <a href="https://github.com/abelban/shiki-material3/blob/codex/material3-builder-config/FAQ.md" class="nav_link--external md-icon" data-icon="open_in_new">FAQ</a>
-          <a href="https://github.com/abelban/shiki-material3/tree/codex/material3-builder-config" class="nav_link--external md-icon" data-icon="open_in_new">Код на GitHub</a>
+          <a href="https://github.com/abelban/shiki-material3/blob/material3-builder-config/FAQ.md" class="nav_link--external"><span class="md-icon" data-icon="help" aria-hidden="true"></span><span>FAQ</span></a>
+          <a href="https://github.com/abelban/shiki-material3/tree/material3-builder-config" class="nav_link--external"><span class="md-icon" data-icon="open_in_new" aria-hidden="true"></span><span>Код на GitHub</span></a>
         </nav>
       </header>
 
@@ -36,6 +38,7 @@
 
       <section id="nav_settings">
         <div class="content">
+          <span class="section-label">Персонализация</span>
           <h2 class="display1">Настройка темы</h2>
           <p>Настройте тему по вкусу, а затем нажмите зафиксированную круглую кнопку, чтобы скопировать код темы. Посмотреть готовый код можно внизу страницы.</p>
           <form action="/" @submit.prevent="createTheme" class="md-container">
@@ -64,7 +67,7 @@
 
             <div class="md-list md-panel" v-if="user.selected_layout == 'cover'">
               <label for="user_id" class="md-list_title inactive required">
-                <span class="md-icon" aria-hidden="true" data-icon="person"></span>Ваш ID <a href="https://github.com/abelban/shiki-material3/blob/codex/material3-builder-config/FAQ.md#как-узнать-мой-id" title="Как узнать мой ID?" class="question">?</a>
+                <span class="md-icon" aria-hidden="true" data-icon="person"></span>Ваш ID <a href="https://github.com/abelban/shiki-material3/blob/material3-builder-config/FAQ.md#как-узнать-мой-id" title="Как узнать мой ID?" class="question">?</a>
               </label>
               <div class="md-list_content">
                 <div class="md-input fullwidth">
@@ -402,6 +405,7 @@
 
       <section id="nav_preview" v-show="status.isFileLoading == false">
         <div class="content">
+          <span class="section-label">Результат</span>
           <h2 class="display1">Предпросмотр</h2>
           <p>Условный вид профиля без адаптации для мобильных телефонов.</p>
 
@@ -440,6 +444,7 @@
 
       <section id="nav_code" v-show="status.isCompiled">
         <div class="content">
+          <span class="section-label">Экспорт</span>
           <h2 class="display1">Готовый стиль</h2>
           <div class="field">
             <label for="output_css" class="label-radio">Скопируйте этот код в настройки вашего профиля:</label>
@@ -480,6 +485,6 @@
     <script src="./vendor/tinycolor/tinycolor.min.js"></script>
     <script src="./src/js/theme-config.js?1"></script>
     <script src="./src/js/theme-bundle.js?3"></script>
-    <script src="./src/js/common.js?18"></script>
+    <script src="./src/js/common.js?19"></script>
   </body>
 </html>

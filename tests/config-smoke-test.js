@@ -189,4 +189,15 @@ assert.doesNotMatch(themeCss, /background:var\(--user-cover\) center top\/cover 
 assert.doesNotMatch(themeCss, /#profiles_show \.l-page\{margin-top:352px/);
 assert.equal(embeddedSandbox.window.SHIKI_THEME_CSS, themeCss);
 
+const builderHtml = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+const builderCss = fs.readFileSync(path.join(__dirname, '..', 'src', 'css', 'common.css'), 'utf8');
+assert.match(builderHtml, /class="section-label">Персонализация</);
+assert.match(builderHtml, /class="md-fab__label">Скопировать тему</);
+assert.match(builderHtml, /tree\/material3-builder-config/);
+assert.doesNotMatch(builderHtml, /codex\/material3-builder-config/);
+assert.match(builderCss, /--md-sys-shape-corner-extra-large:\s*28px/);
+assert.match(builderCss, /Material Symbols Rounded/);
+assert.match(builderCss, /@media \(prefers-reduced-motion: reduce\)/);
+assert.match(builderCss, /\.content-flex\s*\{[^}]*display:\s*grid/);
+
 console.log('Validated ' + vm.builderData.palettes.length + ' palettes and ' + requiredMaterial3Roles.length + ' Material 3 roles.');

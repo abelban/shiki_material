@@ -1231,7 +1231,74 @@ function XHR (url, callback, error) {
 }
 
 
-document.addEventListener('click', function () {
+function initNavigation () {
+  if (!document.querySelectorAll || !window.addEventListener) return;
+
+  var menuToggle = document.getElementById('topbar_menu');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.topbar nav a[href^="#"]'));
+  var ticking = false;
+
+  function activate (activeLink) {
+    links.forEach(function (link) {
+      var isActive = link === activeLink;
+      link.classList.toggle('active', isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function updateActiveLink () {
+    var marker = window.scrollY + Math.min(window.innerHeight * .32, 240);
+    var activeLink = links[0];
+
+    links.forEach(function (link) {
+      var section = document.querySelector(link.getAttribute('href'));
+      if (section && section.getClientRects().length && section.offsetTop <= marker) {
+        activeLink = link;
+      }
+    });
+
+    activate(activeLink);
+    ticking = false;
+  }
+
+  links.forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      var selector = link.getAttribute('href');
+      var section = document.querySelector(selector);
+
+      if (section) {
+        event.preventDefault();
+        section.scrollIntoView({
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+          block: 'start'
+        });
+        window.history.pushState(null, '', selector);
+      }
+
+      activate(link);
+      if (menuToggle) menuToggle.checked = false;
+    });
+  });
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(updateActiveLink);
+    }
+  }, { passive: true });
+
+  updateActiveLink();
+}
+
+
+initNavigation();
+
+
+document.addEventListener('click', function (event) {
   if (event.clientX === 0 && event.clientY === 0 && event.screenX === 0) {
     return false;
   }
