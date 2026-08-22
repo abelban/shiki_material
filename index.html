@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru" data-env="dev" style="background: #FAFAFA; color: #212121; font-size: 16px;">
+<html lang="ru" data-env="dev" style="background: #fffbfe; color: #1c1b1f; font-size: 16px;">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="8xlW8M1Ln8KMWkopmPWTEuJqaaqpDixWDmJJ9vPgBG8">
-    <meta name="theme-color" content="#009688">
-    <title>Сборщик shiki-theme</title>
-    <meta name="description" content="Сборщик CSS темы для Шикимори.">
+    <meta name="theme-color" content="#6750a4">
+    <title>Сборщик Shiki Material 3</title>
+    <meta name="description" content="Сборщик темы Shiki Material 3 для Shikimori.">
     <link rel="stylesheet" href="./src/css/common.css?14">
     <style></style>
   </head>
@@ -16,7 +16,7 @@
         <input type="checkbox" id="topbar_menu">
         <div class="menubar">
           <label for="topbar_menu" class="md-icon" data-icon="menu">
-          </label><h1 class="topbar-title">Сборщик</h1>
+          </label><h1 class="topbar-title">Shiki Material 3</h1>
         </div>
         <label for="copy_css" class="md-fab" :class="{ hidden: status.isFileLoading }">
           <span class="md-icon" data-icon="content_copy"></span>
@@ -27,8 +27,8 @@
           <a href="#nav_preview">Предпросмотр</a>
           <a href="#nav_code">Готовый стиль</a>
           <hr class="md-divider">
-          <a href="https://github.com/grin3671/shiki-theme/blob/gh-pages/FAQ.md" class="nav_link--external md-icon" data-icon="open_in_new">FAQ</a>
-          <a href="https://github.com/grin3671/shiki-theme" class="nav_link--external md-icon" data-icon="open_in_new">Код на GitHub</a>
+          <a href="https://github.com/abelban/shiki-material3/blob/codex/material3-builder-config/FAQ.md" class="nav_link--external md-icon" data-icon="open_in_new">FAQ</a>
+          <a href="https://github.com/abelban/shiki-material3/tree/codex/material3-builder-config" class="nav_link--external md-icon" data-icon="open_in_new">Код на GitHub</a>
         </nav>
       </header>
 
@@ -64,13 +64,13 @@
 
             <div class="md-list md-panel" v-if="user.selected_layout == 'cover'">
               <label for="user_id" class="md-list_title inactive required">
-                <span class="md-icon" aria-hidden="true" data-icon="person"></span>Ваш ID <a href="https://github.com/grin3671/shiki-theme/blob/gh-pages/FAQ.md#как-узнать-мой-id" title="Как узнать мой ID?" class="question">?</a>
+                <span class="md-icon" aria-hidden="true" data-icon="person"></span>Ваш ID <a href="https://github.com/abelban/shiki-material3/blob/codex/material3-builder-config/FAQ.md#как-узнать-мой-id" title="Как узнать мой ID?" class="question">?</a>
               </label>
               <div class="md-list_content">
                 <div class="md-input fullwidth">
                   <input type="text" id="user_id" name="id" @change="setId" v-model="user.user_id" aria-describedby="hint_cover_url" placeholder="8764532">
                   <div class="md-divider"></div>
-                  <span class="md-input_hint" id="hint_cover_url">Вставьте URL вашей аватарки на сайте <a href="https://shikimori.one">shikimori.one</a></span>
+                  <span class="md-input_hint" id="hint_cover_url">Вставьте URL вашей аватарки на сайте <a href="https://shikimori.io">shikimori.io</a></span>
                 </div>
               </div>
             </div>
@@ -117,7 +117,7 @@
               </span>
             </div>
             <div class="md-list_hidden color-settings" v-if="!status.isFileLoading">
-              <p class="text-hint">Чтобы создать свою тему, достаточно настроить основной и акцентирующий цвет, а также выбрать цвет фона — все остальные цвета изменятся автоматически!</p>
+              <p class="text-hint">Чтобы создать свою тему, достаточно настроить основной и вторичный цвет, а также выбрать цвет фона — остальные роли Material 3 рассчитаются автоматически.</p>
 
               <div class="md-container">
                 <label class="v-file md-list md-control">
@@ -287,7 +287,7 @@
 
               <div v-if="!currentHelpers.includes('autoScheme')">
                 <h2>Детальная настройка</h2>
-                <p class="text-hint">Прежде чем начать подбирать цвета для темы, ознакомьтесь с системой цветов Material Design на их сайте: <a href="//material.io/guidelines/style/color.html#color-color-system">material.io</a>. Не меняйте цвет фонов и текста без необходимости: автоматическая настройка схемы подбирает цвета в соответствии с гайдлайном и всегда подбирает наиболее читабельные цвета.</p>
+                <p class="text-hint">Перед настройкой палитры можно ознакомиться с <a href="https://m3.material.io/">системой Material 3</a>. Без необходимости не отключайте автоматическую схему: она рассчитывает текст, контуры, контейнеры поверхностей и слои состояния из выбранного фона.</p>
 
                 <hr class="md-divider">
 
@@ -392,7 +392,7 @@
 
           <hr class="md-divider">
 
-          <p>Если у вас возникли вопросы по теме или сборщику, можете <a href="https://shikimori.one/grin3671">написать разработчику</a>.</p>
+          <p>Если у вас возникли вопросы по исходной теме или сборщику, можете <a href="https://shikimori.io/grin3671">написать автору</a>.</p>
 
           <p>Поддержать разработку можно через <span class="strong"><span style="color: #8b3ffd">Ю</span>money</span>: <a href="https://yoomoney.ru/to/41001258665103">41001258665103</a>. </p>
         </div>
@@ -455,7 +455,7 @@
 
 
 
-      <footer class="copyright">shiki-theme © grin3671</footer>
+      <footer class="copyright">Shiki Material 3 · на основе shiki-theme © grin3671</footer>
 
 
       <color-picker v-if="colorPicker.state"
@@ -478,6 +478,6 @@
 
     <script src="./vendor/vue/vue.min.js"></script>
     <script src="./vendor/tinycolor/tinycolor.min.js"></script>
-    <script src="./src/js/common.js?16"></script>
+    <script src="./src/js/common.js?17"></script>
   </body>
 </html>

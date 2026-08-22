@@ -1,6 +1,6 @@
 [
   {
-    "title": "Основной файл",
+    "title": "Основная тема Material 3",
     "url": "main.css",
     "checked": true
   },
@@ -21,20 +21,20 @@
     "checked": true
   },
   {
-    "title": "Шрифт Roboto Сondensed",
-    "desc": "Лучше подходит для мобильных экранов / x1000",
+    "title": "Шрифт Roboto Condensed",
+    "desc": "Компактный вариант шрифта для узких экранов.",
     "url": "font-roboto_condensed.css",
     "checked": false
   },
   {
-    "title": "Материальные поля ввода",
+    "title": "Заполненные поля Material 3",
     "url": "md-textfields.css",
     "checked": false
   },
   {
     "title": "Изменения профиля #1",
     "url": "profile-update_1.css",
-    "desc": "Отображение дниметра, тонкие полосы графика активности.",
+    "desc": "Отображение дниметра и тонкие полосы графика активности.",
     "checked": true
   },
   {

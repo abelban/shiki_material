@@ -1,7 +1,7 @@
 /**
  * Сборщик shiki-builder
- * Инструмент для сборки shiki-theme для сайта shikimori.one
- * https://github.com/grin3671/shiki-theme
+ * Инструмент для сборки Shiki Material 3 для сайта shikimori.io
+ * https://github.com/abelban/shiki-material3
  * MIT License
  * Copyright (c) 2017 grin3671
  */
@@ -393,8 +393,8 @@ var vm = new Vue({
         'main.css',
         'profile-cover.css',
         'font-roboto.css',
-        'profile-update.1.css',
-        'profile-update.1.1.css',
+        'profile-update_1.css',
+        'profile-update_2.css',
       ],
       // Используется только для предпросмотра темы
       avatar: '',
@@ -418,6 +418,7 @@ var vm = new Vue({
       helpers: [],
       palettes: [],
       lockedPalettes: [],
+      sources: {},
     },
     scheme: {
       // NOTE: Порядок соответствует color_scheme
@@ -463,7 +464,7 @@ var vm = new Vue({
     // Текст
     color_text_primary: {
       get: function () {
-        return this.currentHelpers.includes('autoScheme') ? this.getMixedColor(this.color_background, 87) : this.scheme.color_text_primary;
+        return this.currentHelpers.includes('autoScheme') ? this.getMixedColor(this.color_background, 92) : this.scheme.color_text_primary;
       },
       set: function (color) {
         this.scheme.color_text_primary = color;
@@ -471,7 +472,7 @@ var vm = new Vue({
     },
     color_text_secondary: {
       get: function () {
-        return this.currentHelpers.includes('autoScheme') ? this.getMixedColor(this.color_background, 68) : this.scheme.color_text_secondary;
+        return this.currentHelpers.includes('autoScheme') ? this.getMixedColor(this.color_background, 72) : this.scheme.color_text_secondary;
       },
       set: function (color) {
         this.scheme.color_text_secondary = color;
@@ -479,7 +480,7 @@ var vm = new Vue({
     },
     color_text_hint: {
       get: function () {
-        return this.currentHelpers.includes('autoScheme') ? this.getMixedColor(this.color_background, 54) : this.scheme.color_text_hint;
+        return this.currentHelpers.includes('autoScheme') ? this.getMixedColor(this.color_background, 60) : this.scheme.color_text_hint;
       },
       set: function (color) {
         this.scheme.color_text_hint = color;
@@ -494,7 +495,7 @@ var vm = new Vue({
       }
     },
     color_overlay_text_hovered: function () {
-      return tinycolor(this.color_text_primary).setAlpha(.04).toRgbString();
+      return tinycolor(this.color_text_primary).setAlpha(.08).toRgbString();
     },
     color_overlay_text_selected: function () {
       return tinycolor(this.color_text_primary).setAlpha(.08).toRgbString();
@@ -546,7 +547,8 @@ var vm = new Vue({
     },
     color_primary_reduced: {
       get: function () {
-        return this.currentHelpers.includes('autoMain') ? tinycolor.mix(this.color_background, this.color_primary, 72).toHexString() : this.scheme.color_primary_reduced;
+        let weight = tinycolor(this.color_background).isDark() ? 34 : 18;
+        return this.currentHelpers.includes('autoMain') ? tinycolor.mix(this.color_background, this.color_primary, weight).toHexString() : this.scheme.color_primary_reduced;
       },
       set: function (color) {
         this.scheme.color_primary_reduced = color;
@@ -572,10 +574,10 @@ var vm = new Vue({
       return tinycolor(this.color_primary).setAlpha(.08).toRgbString();
     },
     color_overlay_primary_selected: function () {
-      return tinycolor(this.color_primary).setAlpha(.12).toRgbString();
+      return tinycolor(this.color_primary).setAlpha(.08).toRgbString();
     },
     color_overlay_primary_pressed: function () {
-      return tinycolor(this.color_primary).setAlpha(.16).toRgbString();
+      return tinycolor(this.color_primary).setAlpha(.12).toRgbString();
     },
     // Акцентирующий
     color_accent: {
@@ -596,7 +598,8 @@ var vm = new Vue({
     },
     color_accent_reduced: {
       get: function () {
-        return this.currentHelpers.includes('autoMain') ? tinycolor.mix(this.color_background, this.color_accent, 72).toHexString() : this.scheme.color_accent_reduced;
+        let weight = tinycolor(this.color_background).isDark() ? 30 : 16;
+        return this.currentHelpers.includes('autoMain') ? tinycolor.mix(this.color_background, this.color_accent, weight).toHexString() : this.scheme.color_accent_reduced;
       },
       set: function (color) {
         this.scheme.color_accent_reduced = color;
@@ -614,10 +617,10 @@ var vm = new Vue({
       return tinycolor(this.color_accent).setAlpha(.08).toRgbString();
     },
     color_overlay_accent_selected: function () {
-      return tinycolor(this.color_accent).setAlpha(.12).toRgbString();
+      return tinycolor(this.color_accent).setAlpha(.08).toRgbString();
     },
     color_overlay_accent_pressed: function () {
-      return tinycolor(this.color_accent).setAlpha(.16).toRgbString();
+      return tinycolor(this.color_accent).setAlpha(.12).toRgbString();
     },
     // Фоновые цвета
     color_background: {
@@ -633,7 +636,8 @@ var vm = new Vue({
     },
     color_background_dialog: {
       get: function () {
-        return this.currentHelpers.includes('autoScheme') ? tinycolor(this.color_background).lighten(5).toHexString() : this.scheme.color_background_dialog;
+        let weight = tinycolor(this.color_background).isDark() ? 11 : 8;
+        return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, this.color_text_primary, weight).toHexString() : this.scheme.color_background_dialog;
       },
       set: function (color) {
         this.scheme.color_background_dialog = color;
@@ -649,7 +653,8 @@ var vm = new Vue({
     },
     color_surface_hover: {
       get: function () {
-        return this.currentHelpers.includes('autoScheme') ? this.getMixedColor(this.color_surface, tinycolor(this.color_background).isDark() ? 8 : 4) : this.scheme.color_surface_hover;
+        let weight = tinycolor(this.color_background).isDark() ? 11 : 8;
+        return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, this.color_text_primary, weight).toHexString() : this.scheme.color_surface_hover;
       },
       set: function (color) {
         this.scheme.color_surface_hover = color;
@@ -657,7 +662,8 @@ var vm = new Vue({
     },
     color_surface_active: {
       get: function () {
-        return this.currentHelpers.includes('autoScheme') ? this.getMixedColor(this.color_surface, tinycolor(this.color_background).isDark() ? 12 : 8) : this.scheme.color_surface_active;
+        let weight = tinycolor(this.color_background).isDark() ? 14 : 11;
+        return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, this.color_text_primary, weight).toHexString() : this.scheme.color_surface_active;
       },
       set: function (color) {
         this.scheme.color_surface_active = color;
@@ -665,7 +671,7 @@ var vm = new Vue({
     },
     color_border: {
       get: function () {
-        return this.currentHelpers.includes('autoScheme') ? this.getMixedColor(this.color_background, 12) : this.scheme.color_border;
+        return this.currentHelpers.includes('autoScheme') ? this.getMixedColor(this.color_background, 18) : this.scheme.color_border;
       },
       set: function (color) {
         this.scheme.color_border = color;
@@ -728,7 +734,7 @@ var vm = new Vue({
     },
     color_menu_background_active: {
       get: function () {
-        return this.currentHelpers.includes('autoMenu') ? this.getMixedColor(this.color_menu_background, tinycolor(this.color_menu_background).isDark() ? 12 : 8) : this.scheme.color_menu_background_active;
+        return this.currentHelpers.includes('autoMenu') ? this.getMixedColor(this.color_menu_background, 12) : this.scheme.color_menu_background_active;
       },
       set: function (color) {
         this.scheme.color_menu_background_active = color;
@@ -736,22 +742,22 @@ var vm = new Vue({
     },
     // Цвета кнопок списков
     color_planned: function () {
-      return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, '#76d6ff', 32).toHexString() : this.sheme.color_planned;
+      return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, '#76d6ff', 32).toHexString() : this.scheme.color_planned;
     },
     color_onhold: function () {
-      return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, '#9e9e9e', 32).toHexString() : this.sheme.color_onhold;
+      return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, '#9e9e9e', 32).toHexString() : this.scheme.color_onhold;
     },
     color_watching: function () {
-      return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, '#76d6ff', 24).toHexString() : this.sheme.color_watching;
+      return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, '#76d6ff', 24).toHexString() : this.scheme.color_watching;
     },
     color_rewatching: function () {
-      return this.currentHelpers.includes('autoScheme') ? this.color_watching : this.sheme.color_rewatching;
+      return this.currentHelpers.includes('autoScheme') ? this.color_watching : this.scheme.color_rewatching;
     },
     color_completed: function () {
-      return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, '#c6e97f', 24).toHexString() : this.sheme.color_completed;
+      return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, '#c6e97f', 24).toHexString() : this.scheme.color_completed;
     },
     color_dropped: function () {
-      return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, '#ef5350', 24).toHexString() : this.sheme.color_dropped;
+      return this.currentHelpers.includes('autoScheme') ? tinycolor.mix(this.color_background, '#ef5350', 24).toHexString() : this.scheme.color_dropped;
     },
   },
   methods: {
@@ -872,6 +878,60 @@ var vm = new Vue({
       this.saveLocal(type, image);
       this.builderUpdate();
     },
+    getMaterial3Colors: function () {
+      let isDark = tinycolor(this.color_background).isDark();
+      let primaryContainerWeight = isDark ? 34 : 18;
+      let secondaryContainerWeight = isDark ? 30 : 16;
+      let surfaceVariantWeight = isDark ? 12 : 8;
+      let surfaceLowestWeight = isDark ? 2 : 0;
+      let surfaceLowWeight = isDark ? 5 : 3;
+      let surfaceWeight = isDark ? 8 : 5;
+      let surfaceHighWeight = isDark ? 11 : 8;
+      let surfaceHighestWeight = isDark ? 14 : 11;
+      let inversePrimaryWeight = isDark ? 72 : 64;
+
+      let primaryContainer = tinycolor.mix(this.color_background, this.color_primary, primaryContainerWeight).toHexString();
+      let secondaryContainer = tinycolor.mix(this.color_background, this.color_accent, secondaryContainerWeight).toHexString();
+      let tertiary = tinycolor.mix(this.color_primary, this.color_accent, 62).toHexString();
+      let tertiaryContainer = tinycolor.mix(this.color_background, tertiary, secondaryContainerWeight).toHexString();
+
+      return {
+        'primary': this.color_primary,
+        'on-primary': this.color_text_on_primary,
+        'primary-container': primaryContainer,
+        'on-primary-container': tinycolor.mix(primaryContainer, this.color_text_primary, 88).toHexString(),
+        'secondary': this.color_accent,
+        'on-secondary': this.color_text_on_accent,
+        'secondary-container': secondaryContainer,
+        'on-secondary-container': tinycolor.mix(secondaryContainer, this.color_text_primary, 88).toHexString(),
+        'tertiary': tertiary,
+        'on-tertiary': this.color_text_on_accent,
+        'tertiary-container': tertiaryContainer,
+        'on-tertiary-container': tinycolor.mix(tertiaryContainer, this.color_text_primary, 88).toHexString(),
+        'error': isDark ? '#ffb4ab' : '#ba1a1a',
+        'on-error': isDark ? '#690005' : '#ffffff',
+        'error-container': isDark ? '#93000a' : '#ffdad6',
+        'on-error-container': isDark ? '#ffdad6' : '#410002',
+        'background': this.color_background,
+        'on-background': this.color_text_primary,
+        'surface': this.color_background,
+        'on-surface': this.color_text_primary,
+        'surface-variant': tinycolor.mix(this.color_background, this.color_text_primary, surfaceVariantWeight).toHexString(),
+        'on-surface-variant': this.color_text_secondary,
+        'surface-container-lowest': tinycolor.mix(this.color_background, this.color_text_primary, surfaceLowestWeight).toHexString(),
+        'surface-container-low': tinycolor.mix(this.color_background, this.color_text_primary, surfaceLowWeight).toHexString(),
+        'surface-container': tinycolor.mix(this.color_background, this.color_text_primary, surfaceWeight).toHexString(),
+        'surface-container-high': tinycolor.mix(this.color_background, this.color_text_primary, surfaceHighWeight).toHexString(),
+        'surface-container-highest': tinycolor.mix(this.color_background, this.color_text_primary, surfaceHighestWeight).toHexString(),
+        'inverse-surface': this.color_text_primary,
+        'inverse-on-surface': this.color_background,
+        'inverse-primary': tinycolor.mix(this.color_text_primary, this.color_primary, inversePrimaryWeight).toHexString(),
+        'outline': this.color_text_hint,
+        'outline-variant': this.color_border,
+        'scrim': '#000000',
+        'shadow': '#000000',
+      };
+    },
     createTheme: function () {
       let isSassBuilder = this.user.hasPatreonAccount;
       let output_newcss = '';
@@ -879,8 +939,8 @@ var vm = new Vue({
         // 
       } else {
         // Если пользователь ничего не менял в файлах то делаем импорт файлов
-        let import_url = '@import url("https://shiki-theme.web.app/stable/';
-        let palette_url = '@import url("https://shiki-theme.web.app/palette/';
+        let import_url = '@import url("' + this.builderData.sources.imports;
+        let palette_url = '@import url("' + this.builderData.sources.palettes;
 
         let selectedImports;
 
@@ -890,27 +950,31 @@ var vm = new Vue({
           output_newcss += import_url + file.url + '");\n';
         });
 
-        // 
+        // Оставляем импорт палитры для совместимости со стабильной сборкой.
         if (this.currentPalette.locked) {
           output_newcss += '/* Тема «' + this.builderData.palettes[this.currentPalette.index].title + '» */\n';
           output_newcss += palette_url + this.currentPalette.id.replace(/-/g, '_') + '.css");\n';
-          output_newcss += '\n/* Настройки переменных темы */\n@media{:root {\n';
-        } else {
-          // Конвертировать переменные из этого скрипта в css-переменные
-          output_newcss += '\n/* Настройки переменных темы */\n@media{:root {\n';
-
-          var arr = this.$options.computed;
-          var currentCategory = '';
-          Object.keys(arr).forEach((color) => {
-            var value = arr[color].get ? arr[color].get.call(this) : arr[color].call(this);
-            let block = this.builderData.colors.filter(x => x.id == color)[0].block;
-            var categoryName = currentCategory == block ? '' : '  /* ' + block + ' */\n';
-            currentCategory = block;
-            output_newcss += categoryName + '  --' + color.replace(/_/g, '-') + ': ' + value + ';\n';
-          });
-
-          output_newcss += '\n';
         }
+
+        // Всегда выводим полный набор переменных: так стандартные и пользовательские
+        // палитры получают одинаковые вычисления Material 3.
+        output_newcss += '\n/* Настройки переменных темы */\n@media{:root {\n';
+
+        var currentCategory = '';
+        this.builderData.colors.forEach((color) => {
+          var value = this[color.id];
+          var categoryName = currentCategory == color.block ? '' : '  /* ' + color.block + ' */\n';
+          currentCategory = color.block;
+          output_newcss += categoryName + '  --' + color.id.replace(/_/g, '-') + ': ' + value + ';\n';
+        });
+
+        output_newcss += '\n  /* Цветовые роли Material 3 */\n';
+        let material3Colors = this.getMaterial3Colors();
+        Object.keys(material3Colors).forEach((role) => {
+          output_newcss += '  --md-sys-color-' + role + ': ' + material3Colors[role] + ';\n';
+        });
+
+        output_newcss += '\n';
 
         output_newcss += '  /* Обложка профиля */\n'
         output_newcss += '  --user-cover: url("' + this.user.user_cover + '");\n';
@@ -1145,7 +1209,8 @@ var vm = new Vue({
           'colors',
           'imports',
           'helpers',
-          'palettes'
+          'palettes',
+          'sources'
         ],
         iteration = configs.length;
 
