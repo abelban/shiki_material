@@ -5,14 +5,17 @@
     background: var(--color-primary)
     border: 0
     color: var(--color-text-on-primary)
+    box-shadow: var(--md-sys-elevation-level-0)
 
     &:hover,
     &:focus
       background: var(--color-primary-hovered)
+      box-shadow: var(--md-sys-elevation-level-1)
       color: var(--color-text-on-primary)
 
     &:active
       background: var(--color-primary-pressed)
+      box-shadow: var(--md-sys-elevation-level-0)
       color: var(--color-text-on-primary)
 
   &.is-arrow
@@ -50,8 +53,8 @@ a.b-button
     margin-right: 0
 
   &:not(.active)
-    background-color: var(--color-surface)
-    color: var(--color-text-primary)
+    background-color: var(--md-sys-color-surface-container)
+    color: var(--md-sys-color-on-surface)
 
     &:hover
       @media screen and (min-width: 1024px)
@@ -59,5 +62,5 @@ a.b-button
         color: var(--color-text-primary)
 
   &.active
-    background-color: #4c7fa4
-    color: #fff
+    background-color: var(--md-sys-color-secondary-container)
+    color: var(--md-sys-color-on-secondary-container)

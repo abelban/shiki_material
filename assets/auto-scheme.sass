@@ -1,50 +1,57 @@
 // Функции для расчёта цветов
 // Calculate brightness
 @function brightness($color)
-  @return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100
+  $red: color.channel($color, 'red', $space: rgb)
+  $green: color.channel($color, 'green', $space: rgb)
+  $blue: color.channel($color, 'blue', $space: rgb)
+  @return math.div(($red * .299) + ($green * .587) + ($blue * .114), 255) * 100
 
 // Return contrast color
 @function color-contrast($color)
   $brightness: brightness($color)
   $light: brightness(#fff)
   $dark: brightness(#000) // 121212
-  @return if(abs($brightness - $light) > abs($brightness - $dark), #fff, #000) // 121212
+  @if math.abs($brightness - $light) > math.abs($brightness - $dark)
+    @return #fff
+  @return #000 // 121212
 
 
 
 // Определение основной схемы
 $color-text-default: color-contrast($color-background)
-$theme-dark: if($color-text-default == #fff, true, false)
+$theme-dark: false
+@if $color-text-default == #fff
+  $theme-dark: true
 
 
 
-// Перерасчёт
-$color-text-primary: mix($color-text-default, $color-background, 87%) // MD says 87%
-$color-text-secondary: mix($color-text-default, $color-background, 68%) // MD says 60%
-$color-text-hint: mix($color-text-default, $color-background, 54%) // MD says 60%
-$color-text-disabled: mix($color-text-default, $color-background, 38%)
-$color-border: mix($color-text-default, $color-background, 12%)
+// Перерасчёт ролей поверхности Material 3
+$color-text-primary: color.mix($color-text-default, $color-background, 92%)
+$color-text-secondary: color.mix($color-text-default, $color-background, 72%)
+$color-text-hint: color.mix($color-text-default, $color-background, 60%)
+$color-text-disabled: color.mix($color-text-default, $color-background, 38%)
+$color-border: color.mix($color-text-default, $color-background, 18%)
 
 // Opacity values
-$val-hover: if($theme-dark, 8%, 4%)
-$val-active: if($theme-dark, 12%, 8%)
-$val-selected: if($theme-dark, 12%, 8%)
+$val-hover: 8%
+$val-active: 12%
+$val-selected: 8%
 
 // Вычисляемые цвета
-$color-area-normal: rgba($color-text-primary, $val-hover / 100%)
+$color-area-normal: rgba($color-text-primary, math.div($val-hover, 100%))
 $color-button-hover: $color-area-normal
 
 // Замена background-normal / hover / active
-$color-background-normal: mix($color-text-primary, $color-background, 5%)
-$color-area-hover: mix($color-text-primary, $color-background-normal, $val-hover)
-$color-area-active: mix($color-text-primary, $color-background-normal, $val-active)
+$color-background-normal: color.mix($color-text-primary, $color-background, 5%)
+$color-area-hover: color.mix($color-text-primary, $color-background-normal, $val-hover)
+$color-area-active: color.mix($color-text-primary, $color-background-normal, $val-active)
 
 // Замена background-secondary
-$color-background-secondary: mix($color-text-primary, $color-background, 7%)
+$color-background-secondary: color.mix($color-text-primary, $color-background, 5%)
 
 // Замена background-dialog
-$color-background-dialog: lighten($color-background, 5%)
+$color-background-dialog: color.mix($color-text-primary, $color-background, 8%)
 
-$color-tooltip: mix($color-background, #545454, 8%)
+$color-tooltip: color.mix($color-background, #545454, 8%)
 
 $release: $release + '++'

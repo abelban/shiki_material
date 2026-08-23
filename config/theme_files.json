@@ -19,7 +19,8 @@
   },
   {
     "url": "css-variables.sass",
-    "checked": true
+    "checked": true,
+    "title": "Токены Material 3"
   },
   {
     "url": "main.sass",
@@ -51,27 +52,32 @@
   {
     "url": "modules/material-icons.sass",
     "disabled": true,
-    "checked": true
+    "checked": true,
+    "title": "Material Symbols Rounded"
   },
   {
     "url": "modules/md-button.sass",
     "disabled": true,
-    "checked": true
+    "checked": true,
+    "title": "Кнопки Material 3"
   },
   {
     "url": "modules/md-icon.sass",
     "disabled": true,
-    "checked": true
+    "checked": true,
+    "title": "Кнопки-иконки Material 3"
   },
   {
     "url": "modules/md-scrollbar.sass",
     "disabled": true,
-    "checked": true
+    "checked": true,
+    "title": "Полоса прокрутки Material 3"
   },
   {
     "url": "modules/md-tooltip.sass",
     "disabled": true,
-    "checked": true
+    "checked": true,
+    "title": "Подсказки Material 3"
   },
   {
     "url": "modules/shiki-entry.sass",
@@ -595,7 +601,8 @@
   {
     "url": "tests/md-textfields.sass",
     "checked": true,
-    "description": "Более \"материальные\" поля ввода."
+    "title": "Заполненные поля Material 3",
+    "description": "Вариант полей ввода на тональной поверхности."
   },
   {
     "url": "user-settings.sass",

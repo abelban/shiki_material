@@ -12,10 +12,10 @@
 
 .ti-autocomplete[class]
   padding: 8px 0
-  background: var(--color-background-dialog)
+  background: var(--md-sys-color-surface-container)
   border: 0
-  border-radius: 2px
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,.24)
+  border-radius: var(--md-sys-shape-corner-small)
+  box-shadow: var(--md-sys-elevation-level-2)
 
 
 .ti-item > div
@@ -30,13 +30,14 @@
 .ti-tag[class]
   padding: 0 8px
   margin: 4px 8px 4px 0
-  background: var(--color-primary)
-  color: var(--color-text-on-primary)
+  background: var(--md-sys-color-secondary-container)
+  border-radius: var(--md-sys-shape-corner-small)
+  color: var(--md-sys-color-on-secondary-container)
   line-height: 32px
 
   &.ti-tag[class].ti-deletion-mark
-    background: #ef5350
-    color: #fff
+    background: var(--md-sys-color-error-container)
+    color: var(--md-sys-color-on-error-container)
 
 
 .ti-new-tag-input-wrapper[class]

@@ -1,25 +1,30 @@
 // .comments-loader, .comments-hider, .comments-expander, .faye-loader, and etc.
 %shiki-plashka
-  padding: .5rem 1.5rem
+  min-height: 40px
+  padding: 10px 24px
   margin: 0 0 .5rem
-  background-color: var(--color-surface)
+  background-color: var(--md-sys-color-secondary-container)
   border: 0
   border-color: var(--color-border)
-  border-radius: var(--border-rounded)
-  color: inherit
+  border-radius: var(--md-sys-shape-corner-full)
+  color: var(--md-sys-color-on-secondary-container)
+  font-size: var(--md-sys-typescale-label-large-size)
+  font-weight: 500
   text-align: center
   line-height: 1.5
   cursor: pointer
-  transition: .16s cubic-bezier(.4, 0, .6, 1)
+  transition: background-color var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard), box-shadow var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
 
   &:hover
-    background-color: var(--color-surface-hover)
+    background-color: var(--md-sys-color-surface-container-highest)
+    box-shadow: var(--md-sys-elevation-level-1)
     border: 0
     border-color: var(--color-border)
-    color: inherit
+    color: var(--md-sys-color-on-surface)
 
   &:active
-    background-color: var(--color-surface-active)
+    background-color: var(--md-sys-color-secondary-container)
+    box-shadow: var(--md-sys-elevation-level-0)
     border: 0
     border-color: var(--color-border)
-    color: inherit
+    color: var(--md-sys-color-on-secondary-container)

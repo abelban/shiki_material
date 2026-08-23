@@ -1,14 +1,15 @@
 %shiki-marker
   width: auto
-  padding: 2px .5em
+  min-height: 32px
+  padding: 6px 12px
   margin: .25rem .5rem .25rem 0
   border: 1px solid
-  border-radius: var(--border-rounded)
-  font-size: .75rem
-  font-weight: bold
-  line-height: 1.5
+  border-radius: var(--md-sys-shape-corner-small)
+  font-size: var(--md-sys-typescale-label-large-size)
+  font-weight: 500
+  line-height: var(--md-sys-typescale-label-large-line-height)
   white-space: nowrap
-  transition: .16s cubic-bezier(.4, 0, .6, 1)
+  transition: background-color var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard), border-color var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard), color var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
 
   &::before
     display: none !important

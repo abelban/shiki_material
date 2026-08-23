@@ -115,7 +115,9 @@
         margin: .5rem .25rem
         border-radius: 100%
         font-size: 1.5rem
-        font-family: 'Material Icons'
+        font-family: var(--font-icons-family)
+        font-feature-settings: 'liga'
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
         line-height: 1
         box-sizing: border-box
         pointer-events: auto
@@ -904,6 +906,147 @@
 
     .c-right > .block:last-child
       clear: both
+
+
+// Material cards for profile modules
+@media (min-width: 768px)
+  .p-profiles-show
+    .profile-content
+      & > .cc-2.block > .c-left,
+      & > .cc-2.block > .c-right > .block,
+      & > .cc-2.block > .c-right > .cc-2a > .c-column,
+      & > .block:not(.cc-2)
+        background: var(--md-sys-color-surface-container-low)
+        border: 1px solid var(--md-sys-color-outline-variant)
+        border-radius: var(--md-sys-shape-corner-large)
+        box-shadow: var(--md-sys-elevation-level-0)
+        box-sizing: border-box
+        overflow: hidden
+
+      & > .cc-2.block
+        margin-bottom: 24px !important
+
+        & > .c-left
+          padding: 24px
+
+          .lifetime
+            margin-bottom: 16px
+
+          .activity
+            padding-bottom: 0
+
+        & > .c-right
+          & > .cc-2a
+            margin-bottom: 24px !important
+
+            & > .c-column
+              padding: 0 24px 24px
+              margin-bottom: 16px !important
+
+          & > .block
+            padding: 0 24px 24px
+            margin-bottom: 24px
+
+            .cc-favourites
+              width: 100%
+              margin: 0
+
+      & > .block:not(.cc-2)
+        padding: 0 24px 24px
+        margin-bottom: 24px
+
+        & > .cc-2,
+        & > div:last-child
+          width: 100%
+          margin-bottom: 0 !important
+
+      & > .cc-2.block > .c-right > .block > .subheadline,
+      & > .cc-2.block > .c-right > .cc-2a > .c-column > .subheadline,
+      & > .block:not(.cc-2) > .subheadline
+        min-height: 56px
+        padding: 16px 24px
+        margin: 0 -24px 24px
+        background: var(--md-sys-color-surface-container)
+        border-bottom: 1px solid var(--md-sys-color-outline-variant)
+        box-sizing: border-box
+
+    @media (min-width: 960px)
+      .profile-head
+        margin-bottom: 24px
+        background: var(--md-sys-color-surface-container-low)
+        border: 1px solid var(--md-sys-color-outline-variant)
+        border-radius: var(--md-sys-shape-corner-extra-large)
+        box-shadow: var(--md-sys-elevation-level-1)
+        box-sizing: border-box
+
+        .c-brief,
+        .c-history,
+        .c-info
+          box-sizing: border-box
+
+        .c-brief
+          padding: 24px
+
+        .c-history
+          padding: 24px
+
+        .c-info
+          padding: 0 24px 24px
+
+      .profile-content > .cc-2.block > .c-left
+        width: auto
+        padding: 24px
+
+      .profile-content > .cc-2.block
+        display: grid
+        grid-template-columns: minmax(0, 3fr) minmax(220px, 1fr)
+        align-items: stretch
+        gap: 24px
+
+        &::after
+          display: none
+
+        & > .c-left
+          grid-column: 1
+          grid-row: 1
+          float: none
+          width: auto
+          height: auto
+          padding: 24px
+          margin: 0
+
+        & > .c-right
+          display: contents
+          float: none
+          width: auto
+          margin: 0
+
+          & > .cc-2a
+            display: grid
+            grid-column: 2
+            grid-row: 1
+            grid-template-columns: minmax(0, 1fr)
+            align-content: start
+            gap: 16px
+            width: auto !important
+            padding: 0
+            margin: 0 !important
+            overflow: visible
+
+            &::after
+              display: none
+
+            & > .c-column
+              float: none
+              clear: none
+              width: auto
+              margin: 0 !important
+
+          & > .block
+            grid-column: 1 / -1
+            grid-row: 2
+            width: auto
+            margin: 0 !important
 
 
 // Achievements

@@ -3,13 +3,13 @@
   flex-direction: column-reverse
   justify-content: flex-end
   width: 100%
-  background: var(--color-background-dialog)
-  border-radius: var(--border-rounded)
-  box-shadow: 0 0 0 1px rgba(0,0,0,.08)
-  transition: box-shadow .16s ease
+  background: var(--md-sys-color-surface-container-low)
+  border-radius: var(--md-sys-shape-corner-medium)
+  box-shadow: var(--md-sys-elevation-level-0)
+  transition: box-shadow var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
   overflow: hidden
   &:hover
-    box-shadow: 0 2px 8px 1px rgba(0,0,0,.12)
+    box-shadow: var(--md-sys-elevation-level-1)
 
   .gained
     top: 8px
@@ -17,12 +17,12 @@
     width: auto
     height: auto
     padding: 4px
-    background: #ff9800
+    background: var(--md-sys-color-tertiary-container)
     border: 0
-    color: #fffbf4
+    color: var(--md-sys-color-on-tertiary-container)
     font-size: 0
     line-height: 0
-    box-shadow: 0 2px 6px rgba(45, 27, 0, 0.32)
+    box-shadow: var(--md-sys-elevation-level-1)
     @extend %material-icons
     &::before
       content: 'star'
