@@ -6,14 +6,15 @@
     width: 25rem !important
     max-width: calc(100% - 3.5rem)
     height: 100%
-    background-color: var(--color-background-dialog)
+    background-color: var(--md-sys-color-surface-container-high)
+    border-radius: var(--md-sys-shape-corner-large) 0 0 var(--md-sys-shape-corner-large)
     padding: 4.5rem 1.5rem 1rem
-    box-shadow: 0 2px 3px 1px rgba(0, 0, 0, .24)
+    box-shadow: var(--md-sys-elevation-level-3)
     overflow-y: auto
     -webkit-transform: translateX(110%)
     -ms-transform: translateX(110%)
     transform: translateX(110%)
-    transition: .25s ease
+    transition: transform var(--md-sys-motion-duration-medium-2) var(--md-sys-motion-easing-emphasized)
     z-index: 9
 
   .l-page.menu-expanded .l-menu
@@ -37,10 +38,11 @@
     z-index: 10
 
     .toggler
-      background: var(--color-surface)
-      border-color: var(--color-border)
-      border-radius: 4px
-      padding: 0 .25em
+      background: var(--md-sys-color-secondary-container)
+      border-color: transparent
+      border-radius: var(--md-sys-shape-corner-full)
+      color: var(--md-sys-color-on-secondary-container)
+      padding: 2px 8px
       line-height: 24px
 
       @extend %material-icons
@@ -50,7 +52,7 @@
         vertical-align: top
         margin: 0
         opacity: .72
-        transition: .16s cubic-bezier(.4,0,.6,1)
+        transition: transform var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
 
       &::after
         margin: 0 .25em

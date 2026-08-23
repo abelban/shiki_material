@@ -1,32 +1,57 @@
 /* Звёзды рейтинга */
 .b-rate
   display: flex
-  padding: 6px 0
+  align-items: center
+  gap: 8px
+  max-width: 100%
+  padding: 4px 0
 
   &:last-child
-    margin-bottom: 15px
+    margin-bottom: 0
+
+  .stars-container
+    flex: 0 0 160px
+    width: 160px
+    height: 32px
 
   .text-score
     position: relative
-    flex: 1 1 auto
+    flex: 0 0 auto
+    min-width: 52px
+    margin-left: 0
     color: inherit
+    font-family: var(--font-main)
 
   .score-notice
     position: absolute
-    inset: auto -50% 92%
-    color: inherit
-    font-size: 10px
+    right: auto
+    bottom: calc(100% - 3px)
+    left: 0
+    color: var(--color-text-hint)
+    font-size: 11px
+    font-weight: 500
+    line-height: 12px
     text-transform: uppercase
+    white-space: nowrap
 
   .score-value
-    line-height: 36px
+    font-size: 32px
+    font-weight: 500
+    line-height: 40px
 
   .stars
+    height: 32px
+    line-height: 32px
+    white-space: nowrap
+
     @extend %material-icons
+
     &::before
       width: auto !important
-      font-size: 36px !important
-      letter-spacing: -3.6px
+      font-size: 32px !important
+      letter-spacing: 0
+      line-height: 32px !important
+
     &::after
       display: none
 
@@ -38,8 +63,14 @@
     &.hover
       color: var(--color-accent)
 
+      &::before
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 32
+
     &.score
       color: var(--color-primary)
+
+      &::before
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 32
 
     &.score-1::before
       content: '\e839'
@@ -61,3 +92,24 @@
       content: '\e838\e838\e838\e838\e839'
     &.score-10::before
       content: '\e838\e838\e838\e838\e838'
+
+  // A title page gives the rating only 196px on desktop. Five 32px stars,
+  // the score and the gap cannot fit there without covering the next column.
+  .b-db_entry .rate-show &
+    gap: 4px
+
+    .stars-container
+      flex-basis: 140px
+      width: 140px
+      height: 28px
+
+    .text-score
+      min-width: 48px
+
+    .stars
+      height: 28px
+      line-height: 28px
+
+      &::before
+        font-size: 28px !important
+        line-height: 28px !important

@@ -1,6 +1,10 @@
 .b-add_to_list
+  position: relative
   min-width: 0
   margin-bottom: .5rem
+
+  &.expanded
+    z-index: 30
 
   .plus,
   .edit,
@@ -30,14 +34,18 @@
 
   .trigger
     display: flex
+    align-items: center
     flex-direction: row-reverse
     padding: 0
-    border-radius: var(--border-rounded) // thx @bot.AkiKawasaki
+    border-radius: var(--md-sys-shape-corner-full)
+    box-shadow: var(--md-sys-elevation-level-0)
     line-height: 40px
+    overflow: hidden
 
     .add-trigger,
     .edit-trigger
       display: flex
+      align-items: center
       width: 100%
       padding:  0 .5em 0 0
       border-right: 1px solid
@@ -125,12 +133,29 @@
       transform: rotate(180deg)
 
   .expanded-options
+    position: absolute
+    top: calc(100% + 4px)
+    right: 0
+    left: 0
+    padding: 8px 0
+    background: var(--md-sys-color-surface-container)
+    border: 1px solid var(--md-sys-color-outline-variant)
+    border-radius: var(--md-sys-shape-corner-medium)
+    box-shadow: var(--md-sys-elevation-level-3)
+    color: var(--md-sys-color-on-surface)
+    overflow: hidden
+    z-index: 20
 
     .option
+      display: flex
+      align-items: center
       position: relative
-      padding: 0 1rem
+      min-height: 48px
+      padding: 0 12px
+      background: transparent !important
+      color: var(--md-sys-color-on-surface)
       font-size: .875rem
-      line-height: 40px
+      line-height: 20px
       &::before
         content: ''
         position: absolute
@@ -147,6 +172,9 @@
 
       .text
         padding-left: 0
+
+      &.remove-trigger
+        color: var(--md-sys-color-error)
 
 
   .b-db_entry-variant-list_item > .info .b-user_rate &
@@ -171,8 +199,8 @@
       margin-right: .25rem !important
 
     .expanded-options
-      position: relative
-      padding-top: 0
+      position: absolute
+      padding-top: 8px
       margin-top: 0
 
       .option

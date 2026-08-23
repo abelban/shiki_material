@@ -1,3 +1,8 @@
+// Шикимори не оборачивает тему в desktop-only media, если в ней уже есть media.
+@media all
+  :root
+    --shiki-material-version: 3
+
 // BUGFIX
 // В превью комментария не отображается заголовок на страницах клубов
 .p-club_pages .new_comment .preview .b-comment .inner header,
@@ -41,7 +46,7 @@ textarea
   --color-info: #4f91e8
   --color-success: #66bb6a
   --color-warning: #ef8d50
-  --color-danger: #ef5350
+  --color-danger: var(--md-sys-color-error)
 
   --color-negative: #c5484e
   --color-neutral: #549db3
@@ -75,8 +80,8 @@ textarea
   // Положение для прилипающих элементов (высота меню)
   --l-sticky--top: 56px
 
-  --border-round: 50%
-  --border-rounded: 3px
+  --border-round: var(--md-sys-shape-corner-full)
+  --border-rounded: var(--md-sys-shape-corner-medium)
 
   // unit * 2
   --font-size: 16px
@@ -106,9 +111,9 @@ body
   background-image: var(--user-background)
   background-size: cover
   color: var(--color-text-primary)
-  font-size: 16px
+  font-size: var(--md-sys-typescale-body-large-size)
   font-weight: 400
-  line-height: 1.5
+  line-height: var(--md-sys-typescale-body-large-line-height)
   // overflow-x: hidden /* блокирует работу position: sticky */
 
   @media (max-width: 1024px)
@@ -126,7 +131,7 @@ body
   line-height: 2em
 
   &::before
-    content: 'shiki-theme v#{$ver}-#{$release}'
+    content: 'shiki-material3 v#{$ver}-#{$release}'
     display: block
     float: left
     position: static
@@ -139,7 +144,7 @@ body
     font-weight: 700
 
   body[data-user *= ':2727,'] &::before
-    content: 'shiki-theme v#{$ver}-#{$release}'
+    content: 'shiki-material3 v#{$ver}-#{$release}'
 
   &::after
     display: none
@@ -221,8 +226,9 @@ h2, h3, h4
 
 h3
   color: var(--color-text-primary)
-  font-size: 1.5rem
-  line-height: 1.5
+  font-size: var(--md-sys-typescale-headline-small-size)
+  font-weight: 400
+  line-height: var(--md-sys-typescale-headline-small-line-height)
   margin: .25em 0 .375em
   text-overflow: ellipsis
   white-space: nowrap
@@ -241,6 +247,20 @@ input
   background: transparent
   border: 0
   color: inherit
+
+button,
+input,
+select,
+textarea
+  font: inherit
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible
+  outline: 3px solid var(--md-sys-color-primary)
+  outline-offset: 2px
 
 
 
@@ -323,7 +343,7 @@ input
   display: inline-block
   padding: 0 .5rem
   margin: .25rem 0
-  border-radius: .625rem
+  border-radius: var(--md-sys-shape-corner-full)
   color: var(--color-text-secondary)
   font-size: .875rem
   font-weight: bold
@@ -343,7 +363,7 @@ input
 
 .smiley
   background: #fff
-  border-radius: 2px
+  border-radius: var(--md-sys-shape-corner-extra-small)
 
 
 

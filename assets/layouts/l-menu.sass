@@ -5,7 +5,7 @@
   height: var(--menu-height)
   background-color: var(--color-menu-background)
   border: 0
-  box-shadow: 0 2px 8px 2px rgba(0,0,0,.24)
+  box-shadow: var(--md-sys-elevation-level-1)
   color: var(--color-menu-text-primary)
 
   .menu-logo
@@ -63,6 +63,14 @@
   .menu-icon,
   .menu-dropdown > span
     height: var(--menu-height)
+    transition: background-color var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
+
+  .menu-icon
+    border-radius: var(--md-sys-shape-corner-full)
+
+    &:focus-visible
+      outline: 3px solid currentColor
+      outline-offset: -6px
 
   .menu-icon:focus,
   .menu-dropdown > span:focus
@@ -182,10 +190,12 @@
 
   // Выпадающее меню
   .submenu
-    background-color: var(--color-menu-background-active)
+    background-color: var(--md-sys-color-surface-container)
     border: 0
-    border-color: var(--color-menu-background-active)
-    border-radius: 0 0 var(--border-rounded) var(--border-rounded)
+    border-color: var(--md-sys-color-outline-variant)
+    border-radius: 0 0 var(--md-sys-shape-corner-large) var(--md-sys-shape-corner-large)
+    box-shadow: var(--md-sys-elevation-level-2)
+    color: var(--md-sys-color-on-surface)
 
     &::after
       content: ''
@@ -217,7 +227,7 @@
       @extend %material-icons
       &::before
         margin-right: 16px
-        color: var(--color-menu-icon)
+        color: var(--md-sys-color-on-surface-variant)
 
         @media (max-width: 767px)
           margin-right: 32px
@@ -418,7 +428,7 @@
       margin: calc((var(--menu-height) - 40px) / 2) 0
       background: var(--color-menu-search-fade)
       border: 0
-      border-radius: 3px
+      border-radius: var(--md-sys-shape-corner-full)
       color: inherit
       font-size: inherit
       line-height: 40px
@@ -464,6 +474,8 @@
       top: var(--menu-height)
       padding: .5em 0
       background: var(--color-background-dialog)
+      border-radius: 0 0 var(--md-sys-shape-corner-large) var(--md-sys-shape-corner-large)
+      box-shadow: var(--md-sys-elevation-level-3)
       color: var(--color-text-primary)
 
       &::before
@@ -516,7 +528,8 @@
 
         &.active,
         &:focus
-          background: var(--color-overlay-text-selected)
+          background: var(--md-sys-color-secondary-container)
+          color: var(--md-sys-color-on-secondary-container)
           &::before
             background: var(--color-accent)
 
@@ -556,15 +569,15 @@
   &.is-search-mobile
     .global-search
       input
-        background-color: #fff
-        box-shadow: 0 0 2px 0 rgba(0,0,0,.2) inset
-        color: #212121
+        background-color: var(--md-sys-color-surface-container-highest)
+        box-shadow: var(--md-sys-elevation-level-0)
+        color: var(--md-sys-color-on-surface)
 
       .hotkey-marker
         display: none
 
       .search-marker
-        color: #212121 !important
+        color: var(--md-sys-color-on-surface-variant) !important
 
 
 //

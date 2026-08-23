@@ -1,144 +1,336 @@
 .b-review-topic
-  &.is-review_review_author_details > .inner
-    header
-      margin-bottom: 4px
+  &.is-review_review_author_details
+    margin: 0 0 16px
+    background: var(--md-sys-color-surface-container-low)
+    border: 1px solid var(--md-sys-color-outline-variant)
+    border-radius: var(--md-sys-shape-corner-medium)
+    box-shadow: var(--md-sys-elevation-level-0)
+    overflow: hidden
+    transition: box-shadow var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
 
-    .review-details
-      line-height: 24px
+    &::before
+      display: none
 
-      .name-url
-        align-items: center
+    &:hover
+      box-shadow: var(--md-sys-elevation-level-1)
 
-        .name
-          font-size: 16px
+    & > .inner
+      padding: 16px !important
+      background: transparent
+      box-sizing: border-box
 
-        .to-review
+      &.b-height_shortened
+        height: 288px !important
+
+      &:not(.b-height_shortened)
+        height: auto !important
+
+    .item-mobile
+      top: 16px
+      right: 12px
+
+    .item-quote-mobile
+      top: 16px
+
+    & > .inner header
+      display: flex
+      align-items: flex-start
+      min-height: 48px
+      padding: 0
+      margin-bottom: 12px
+
+      .author-link
+        display: block
+        flex: 0 0 48px
+        width: 48px
+        height: 48px
+        margin: 0 12px 0 0
+
+        & > img
+          width: 48px !important
+          height: 48px
+          min-height: 48px
+          margin: 0 !important
+          border-radius: var(--md-sys-shape-corner-full)
+
+      .review-details
+        flex: 1 1 auto
+        min-width: 0
+        line-height: 24px
+
+        .name-url
           display: flex
-          flex-shrink: 0
           align-items: center
-          padding: 0 8px 0 4px
-          background: var(--color-overlay-text-hovered)
-          border-radius: 3px
-          color: var(--color-text-secondary)
-          font-size: 0
-          font-weight: bold
+          flex-wrap: wrap
+          gap: 4px 8px
+          min-width: 0
+          margin: 0
 
-          @media (min-width: 768px)
-            margin-left: 12px
+          .name-inner
+            display: flex
+            min-width: 0
+            overflow: hidden
 
-          @media (min-width: 1024px)
+          .name
+            color: var(--color-link)
+            font-size: 16px
+            font-weight: 600
+            text-overflow: ellipsis
+            white-space: nowrap
+            overflow: hidden
+
+          .to-review
+            display: inline-flex
+            flex: 0 0 auto
+            align-items: center
+            min-height: 32px
+            padding: 0 12px
+            background: var(--md-sys-color-secondary-container)
+            border-radius: var(--md-sys-shape-corner-full)
+            color: var(--md-sys-color-on-secondary-container)
+            font-size: 0
+            font-weight: 500
+
             &:hover
-              background: var(--color-overlay-text-selected)
-              color: var(--color-text-primary)
+              background: var(--md-sys-color-surface-container-highest)
               text-decoration: none
 
-          &:active
-            background: var(--color-overlay-text-pressed)
+            &:active
+              background: var(--md-sys-color-surface-container-high)
 
-          @extend %material-icons
-          &::before
-            content: 'read_more'
-            margin-right: 8px
-
-          &::after
-            content: var(--text-review-to-review)
-            font-size: 14px
-
-      .b-status-line
-        color: var(--color-text-hint)
-
-      .opinion
-        width: auto
-        height: auto
-        padding: 4px
-        margin-right: 8px
-        border-radius: 3px
-
-        @extend %material-icons
-
-        &.positive::before
-          content: 'sentiment_very_satisfied'
-
-        &.neutral::before
-          content: 'sentiment_neutral'
-
-        &.negative::before
-          content: 'sentiment_very_dissatisfied'
-
-      .user-rate
-        position: relative
-        display: flex
-        flex-direction: row-reverse
-        padding: 6px 4px 5px
-        margin: 0 0 0 1rem
-        background: var(--color-overlay-text-hovered)
-        border-radius: var(--border-rounded)
-        line-height: 18px
-
-        .b-rate
-          padding: 0 6px
-          margin: 0
-          border-left: thin solid var(--color-border)
-          line-height: inherit
-
-          .stars
-            display: none
-
-          .stars.score
-            position: static
-            display: flex
-            flex-direction: row-reverse
-            align-items: center
-            color: var(--color-text-secondary)
-
-            @for $n from 0 through 10
-              &.score-#{$n}
-                --score: #{$n}
+            @extend %material-icons
 
             &::before
-              content: '\e838'
-              margin: 0 -3px 0 3px
-              font-size: 16px !important
-              letter-spacing: normal
-              transform: translateY(-1px)
-
-            &::after
-              counter-reset: score var(--score)
-              content: counter(score)
-              display: block
-              font-family: var(--font-main)
-              font-size: 14px
-              font-weight: bold
-              letter-spacing: normal
-
-        .b-add_to_list
-          padding: 0 6px
-
-          .edit
-            display: none
-            width: auto
-            height: auto
-            padding: 0
-
-          .edit-trigger
-            padding: 0
-            background: transparent
-            border: 0
-            cursor: auto
-
-          .trigger
-            max-width: none
-            padding: 0
-            background: transparent
-            border-left-width: 0
-            color: var(--color-text-secondary)
-            font-size: 14px
-            line-height: 18px
-
-            [class]::before
-              width: 1em !important
-              margin: 0
+              content: 'read_more'
+              margin-right: 6px
               font-size: 18px !important
 
-    & > aside.buttons
+            &::after
+              content: var(--text-review-to-review)
+              font-family: var(--font-main)
+              font-size: 14px
+
+        .b-status-line
+          display: flex
+          align-items: center
+          flex-wrap: wrap
+          gap: 0 12px
+          width: auto
+          margin: 4px 0 0
+          color: var(--color-text-hint)
+
+          .section
+            margin: 0
+
+            &:not(:last-child)::after
+              display: none
+
+          .section.main
+            display: flex
+            align-items: center
+            flex-wrap: wrap
+
+          .section.created_at
+            margin-left: auto
+
+        .review-info
+          display: flex
+          align-items: center
+          flex-wrap: wrap
+          gap: 8px
+          min-height: 36px
+          padding: 8px 0 0
+          margin: 0
+
+          .opinion
+            display: inline-flex
+            flex: 0 0 32px
+            align-items: center
+            justify-content: center
+            width: 32px
+            height: 32px
+            padding: 0
+            margin: 0
+            background: var(--md-sys-color-surface-container-highest)
+            border-radius: var(--md-sys-shape-corner-small)
+
+            @extend %material-icons
+
+            &.positive::before
+              content: 'sentiment_very_satisfied'
+
+            &.neutral::before
+              content: 'sentiment_neutral'
+
+            &.negative::before
+              content: 'sentiment_very_dissatisfied'
+
+          .label
+            font-size: 14px
+            font-weight: 600
+            line-height: 18px
+
+          .user-rate-label
+            color: var(--color-text-hint)
+            font-size: 12px
+            line-height: 16px
+
+          .user-rate
+            display: flex
+            flex: 0 0 auto
+            flex-direction: row-reverse
+            align-items: center
+            min-height: 32px
+            padding: 4px 6px
+            margin: 0 0 0 auto
+            background: var(--md-sys-color-surface-container-high)
+            border-radius: var(--md-sys-shape-corner-full)
+            line-height: 18px
+
+            .b-rate
+              display: block
+              min-width: 0
+              padding: 0 6px
+              margin: 0
+              border-left: 1px solid var(--md-sys-color-outline-variant)
+              line-height: 18px
+
+              .stars-container,
+              .hoverable-trigger
+                position: static
+                width: auto
+                height: auto
+
+              .stars
+                display: none
+
+              .stars.score
+                display: inline-flex
+                flex-direction: row-reverse
+                align-items: center
+                position: static
+                color: var(--color-text-secondary)
+
+                @for $n from 0 through 10
+                  &.score-#{$n}
+                    --score: #{$n}
+
+                &::before
+                  content: '\e838'
+                  margin: 0 -2px 0 3px
+                  font-size: 16px !important
+                  letter-spacing: normal
+
+                &::after
+                  counter-reset: score var(--score)
+                  content: counter(score)
+                  display: block
+                  font-family: var(--font-main)
+                  font-size: 14px
+                  font-weight: 600
+                  letter-spacing: normal
+
+            .b-add_to_list
+              padding: 0 6px
+
+              .edit
+                display: none
+                width: auto
+                height: auto
+                padding: 0
+
+              .edit-trigger
+                padding: 0
+                background: transparent
+                border: 0
+                cursor: default
+
+              .trigger
+                max-width: none
+                padding: 0
+                background: transparent
+                border-left-width: 0
+                color: var(--color-text-secondary)
+                font-size: 14px
+                line-height: 18px
+
+                [class]::before
+                  width: 1em !important
+                  margin: 0
+                  font-size: 18px !important
+
+    & > .inner .is_written_before_release-container
+      margin: 0 0 12px 60px
+
+      .b-anime_status_tag
+        margin-right: 0
+
+    & > .inner .body
+      margin-top: 0
+      color: var(--color-text-primary)
+      line-height: 24px
+      overflow: hidden
+
+    & > .inner footer
+      .b-footer_vote
+        margin: 12px 0 0
+
+    & > .inner > aside.buttons
       margin-top: -40px
+
+    & > .b-height_shortener
+      padding: 0 16px
+      margin-top: -40px
+
+      .shade
+        --c-shade-bottom: var(--md-sys-color-surface-container-low)
+        right: 1px
+        left: 1px
+        height: 64px
+
+      .expand
+        padding: 8px 0
+
+        span
+          margin: 0
+          background: var(--md-sys-color-secondary-container)
+          color: var(--md-sys-color-on-secondary-container)
+          opacity: 1
+
+    @media (max-width: 767px)
+      & > .inner
+        padding: 12px !important
+
+        &.b-height_shortened
+          height: 304px !important
+
+      .item-mobile
+        top: 12px
+        right: 8px
+
+      & > .inner header
+        .author-link
+          flex-basis: 40px
+          width: 40px
+          height: 40px
+          margin-right: 10px
+
+          & > img
+            width: 40px !important
+            height: 40px
+            min-height: 40px
+
+        .review-details
+          padding-right: 36px
+
+          .b-status-line .section.created_at
+            margin-left: 0
+
+          .review-info .user-rate
+            margin-left: 0
+
+      & > .inner .is_written_before_release-container
+        margin-left: 50px
+
+      & > .b-height_shortener
+        padding: 0 12px

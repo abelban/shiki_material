@@ -5,18 +5,17 @@
   height: 40px
   padding: 8px
   margin: 4px 8px 4px 0 !important
-  border-radius: 2px
-  transition: .16s cubic-bezier(.4, 0, .6, 1)
+  border-radius: var(--md-sys-shape-corner-full)
+  transition: background-color var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard), color var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
 
   &:last-child
     margin-right: 0 !important
 
-  &::before
   // NOTE: %material-icons extend ::before
   @extend %material-icons
 
 %md-icon-hover
-  color: var(--color-text-hint) !important
+  color: var(--md-sys-color-on-surface-variant) !important
 
   &:hover
     background-color: var(--color-overlay-text-hovered)
@@ -26,11 +25,16 @@
   &:active
     background-color: var(--color-overlay-text-pressed)
 
+  &:focus-visible
+    outline: 3px solid var(--md-sys-color-primary)
+    outline-offset: 2px
+
 %md-icon-small
   width: 32px
   height: 32px
   padding: 6px
   margin: 0 8px 0 0 !important
+  border-radius: var(--md-sys-shape-corner-full)
 
   &::before
     font-size: 20px !important

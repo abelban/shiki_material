@@ -3,21 +3,29 @@
     display: flex
     flex-direction: column
     height: 100%
-    border: 1px solid var(--color-border)
-    border-radius: 5px
-    transition: background .2s ease-in-out
+    background: var(--md-sys-color-surface-container-low)
+    border: 1px solid var(--md-sys-color-outline-variant)
+    border-radius: var(--md-sys-shape-corner-medium)
+    box-shadow: var(--md-sys-elevation-level-0)
+    transition: background-color var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard), box-shadow var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
     overflow: hidden
+
     &:hover
-      background-color: var(--color-overlay-text-hovered)
+      background-color: var(--md-sys-color-surface-container)
+      box-shadow: var(--md-sys-elevation-level-1)
+
     &:active
-      background-color: var(--color-overlay-text-pressed)
+      background-color: var(--md-sys-color-surface-container-high)
+      box-shadow: var(--md-sys-elevation-level-0)
 
   .poster
     margin: 0
 
   .status-line
     order: 3
-    padding: 0 8px 4px
+    align-items: center
+    gap: 8px
+    padding: 8px 16px 16px
     margin: auto 0 0
 
     time
@@ -54,17 +62,20 @@
         font-size: 16px !important
 
     .tags
+      display: flex
+      align-items: center
+      flex-wrap: wrap
       flex-basis: 100%
+      gap: 8px
       margin: 0
 
       .b-anime_status_tag
-        &:not(:last-child)
-          margin: 4px 8px 4px 0
-
-        &:last-child
-          margin-left: 0
+        margin: 0
 
   .title
-    max-height: 54px
-    padding: 8px 8px 0
+    max-height: 64px
+    padding: 16px 16px 0
     color: var(--color-text-primary) !important
+    font-size: 16px
+    font-weight: 600
+    line-height: 24px

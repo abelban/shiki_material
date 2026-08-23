@@ -321,6 +321,12 @@
       @media (max-width: 767px)
         height: 206px
 
+      @media (min-width: 768px)
+        width: 100% !important
+        margin-right: 0
+        margin-left: 0
+        column-gap: 16px
+
       & > .b-news_line-topic
         @media (max-width: 767px)
           width: calc((100vw - (var(--l-margin) * 2)))
@@ -328,6 +334,72 @@
 
         @media (min-width: 1024px)
           margin-bottom: 8px
+
+  @media (min-width: 768px)
+    .news_wall.latest-news
+      display: grid
+      grid-template-columns: repeat(3, minmax(0, 1fr))
+      align-items: stretch
+      gap: 24px
+      width: 100% !important
+      margin: 0 !important
+
+      & > .b-news_wall-topic
+        width: auto !important
+        min-width: 0
+        margin: 0 !important
+
+    .fc-2_3
+      display: grid
+      grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr)
+      align-items: start
+      gap: 24px
+      width: 100%
+      margin: 0
+
+      & > .f-column
+        width: auto !important
+        min-width: 0
+        margin: 0 !important
+
+        & > .headline
+          display: flex
+          align-items: center
+          flex-wrap: wrap
+          min-height: 48px
+          width: auto
+          padding: 8px 0
+          margin: 0 0 8px
+          box-sizing: border-box
+
+          .misc-links
+            display: inline-flex
+            align-items: center
+            flex-wrap: wrap
+            gap: 4px
+            margin-left: 8px
+            line-height: 20px
+
+            a
+              display: inline-flex
+              align-items: center
+              min-height: 32px
+              padding: 0 8px
+              margin: 0
+              border-radius: var(--md-sys-shape-corner-full)
+              font-size: 14px
+              line-height: 20px
+
+              &::after
+                display: none
+
+    .content-updates .inner > .b-news_line-topic
+      width: calc((100% - 16px) / 2) !important
+      margin: 0 0 8px !important
+
+    .hot-topics .inner > .b-news_line-topic
+      width: 100% !important
+      margin: 0 0 8px !important
 
 
 
@@ -403,6 +475,162 @@
         vertical-align: top
         padding: 0
         font-size: 13px
+
+    @media (min-width: 768px)
+      display: grid
+      grid-template-columns: minmax(280px, 320px) minmax(0, 1fr)
+      align-items: start
+      gap: 24px
+
+      .f-user,
+      .f-sections
+        width: 100% !important
+        min-width: 0
+        margin: 0
+
+      .f-sections
+        display: grid
+        grid-template-columns: 88px minmax(0, 1fr)
+        align-items: start
+        gap: 12px 16px
+        padding: 12px 16px
+        background: var(--color-surface)
+        border: 1px solid var(--color-border)
+        border-radius: 16px
+        box-sizing: border-box
+
+        .fc-headlines,
+        .fc-tags
+          display: contents
+          width: auto
+          margin: 0
+          text-align: left
+
+        .fc-tags
+          &::before,
+          &::after
+            display: none
+
+        .fc-headlines
+          .f-headline
+            width: auto !important
+            min-width: 0
+            margin: 0
+
+            &:nth-child(1)
+              grid-column: 1
+              grid-row: 1
+
+            &:nth-child(2)
+              grid-column: 1
+              grid-row: 2
+
+            &:nth-child(3)
+              grid-column: 1
+              grid-row: 3
+
+          .midheadline
+            display: flex
+            align-items: center
+            min-height: 40px
+            width: 100%
+            padding: 0
+            margin: 0
+            overflow: visible
+
+            & > a
+              display: inline-flex
+              align-items: center
+              min-height: 40px
+              max-width: 100%
+              padding: 0 8px
+              margin: 0
+              box-sizing: border-box
+
+        .fc-tags .f-tags
+          display: flex !important
+          flex-direction: row
+          align-items: flex-start
+          flex-wrap: wrap
+          gap: 8px
+          width: auto !important
+          min-width: 0
+          margin: 0
+
+          &:nth-child(1)
+            grid-column: 2
+            grid-row: 1
+
+          &:nth-child(2)
+            grid-column: 2
+            grid-row: 2
+
+          &:nth-child(3)
+            grid-column: 2
+            grid-row: 3
+
+          .tags
+            display: flex
+            align-items: center
+            align-content: flex-start
+            flex-wrap: wrap
+            flex: 0 1 auto
+            gap: 8px
+            width: auto !important
+            min-width: 0
+
+          .tag-link
+            display: inline-flex
+            align-items: center
+            min-height: 32px
+            width: auto !important
+            padding: 0 12px
+            margin: 0
+            border-radius: 16px
+            line-height: 20px
+            white-space: nowrap
+
+        .forum-container
+          display: inline-flex
+          flex: 0 0 auto
+          width: auto !important
+          padding: 0
+          margin: 0
+
+          .b-link_button
+            display: inline-flex
+            align-items: center
+            justify-content: center
+            min-width: 112px !important
+            width: auto !important
+            min-height: 40px
+            padding: 0 20px
+            margin: 0
+            box-sizing: border-box
+
+  .news_wall.other-news
+    display: grid
+    grid-template-columns: 1fr
+    gap: 24px 16px
+    margin: 0
+
+    @media (min-width: 600px)
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+
+    @media (min-width: 768px)
+      grid-template-columns: repeat(3, minmax(0, 1fr))
+
+    & > .b-news_wall-topic
+      width: auto !important
+      min-width: 0
+      margin: 0
+
+    & > .b-postloader
+      grid-column: 1 / -1
+      width: 100%
+      margin-right: 0
+      margin-left: 0
+      box-sizing: border-box
 
 
 

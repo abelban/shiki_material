@@ -2,21 +2,22 @@
   &::after
     display: block !important
     position: absolute
-    padding: 6px 12px
-    margin: 4px 12px
-    background-color: var(--color-tooltip, #616161)
-    border-radius: var(--border-rounded)
-    color: var(--color-on-tooltip, #eee)
-    font-size: .875rem
-    line-height: 1.25rem
+    padding: 4px 8px
+    margin: 4px 8px
+    background-color: var(--md-sys-color-inverse-surface)
+    border-radius: var(--md-sys-shape-corner-extra-small)
+    color: var(--md-sys-color-inverse-on-surface)
+    font-size: var(--md-sys-typescale-label-medium-size)
+    font-weight: 500
+    line-height: var(--md-sys-typescale-label-medium-line-height)
     white-space: nowrap
     z-index: 100
     pointer-events: none
     opacity: 0
-    transition: .3s
+    transition: opacity var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard), transform var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
 
   &:hover::after
-    opacity: .9
+    opacity: 1
 
 %md-tooltip-left
   &::after

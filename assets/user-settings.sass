@@ -20,7 +20,7 @@ body
     background-position: top center
     background-size: cover
 
-@if variable-exists(image-cover)
+@if meta.variable-exists('image-cover')
   /* Моя обложка в профиле */
   .p-profiles .profile-head[data-user-id = '#{$id}']::before
     display: block /* Отображение обложки */

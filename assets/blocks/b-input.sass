@@ -1,33 +1,35 @@
 // From md-textfields
 %md-textfield
-  padding: 8px 16px
+  min-height: 48px
+  padding: 12px 16px
   background: transparent
   border: 0
-  border-radius: var(--border-rounded)
-  box-shadow: 0 0 0 1px var(--color-border) inset
+  border-radius: var(--md-sys-shape-corner-extra-small)
+  box-shadow: 0 0 0 1px var(--md-sys-color-outline) inset
   color: var(--color-text-primary)
   font-family: inherit
   font-size: inherit
   line-height: 1.5
-  transition: box-shadow .24s cubic-bezier(0.4, 0, 0.6, 1)
+  transition: background-color var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard), box-shadow var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
 
   &:hover
-    box-shadow: 0 0 0 2px var(--color-border) inset
+    box-shadow: 0 0 0 1px var(--md-sys-color-on-surface) inset
 
   &:invalid
-    box-shadow: 0 0 0 2px var(--color-danger) inset
+    box-shadow: 0 0 0 2px var(--md-sys-color-error) inset
 
   &:focus
-    box-shadow: 0 0 0 2px var(--color-primary) inset
+    box-shadow: 0 0 0 2px var(--md-sys-color-primary) inset
     outline: none
 
   &:focus-visible
-    box-shadow: 0 0 0 2px var(--color-primary) inset
+    box-shadow: 0 0 0 2px var(--md-sys-color-primary) inset
     outline: none
 
   &:disabled
-    opacity: .5
-    box-shadow: 0 0 0 1px var(--color-border) inset
+    color: var(--color-text-disabled)
+    opacity: 1
+    box-shadow: 0 0 0 1px var(--md-sys-color-outline-variant) inset
 
 
 
@@ -66,9 +68,14 @@
   //       D: border-color normal #FFFFFF disabled rgba(255,255,255,.3)
   input[type=checkbox]
     display: inline-block
+    flex: 0 0 1.125rem
     vertical-align: top
     width: 1.125rem !important
+    min-width: 1.125rem
+    max-width: 1.125rem
     height: 1.125rem
+    min-height: 1.125rem
+    max-height: 1.125rem
     padding: 0
     margin: .1875rem 1rem .1875rem 0
     background-color: transparent
@@ -76,7 +83,7 @@
     background-size: 1.125rem
     background-position: -.125rem -.125rem
     border: .125rem solid var(--color-text-hint)
-    border-radius: .125rem
+    border-radius: var(--md-sys-shape-corner-extra-small)
     box-sizing: border-box
     box-shadow: none
     transition: .24s cubic-bezier(.4, 0, .2, 1)
@@ -104,21 +111,21 @@
   input[type=file]
     &::file-selector-button
       height: 40px
-      padding: 0 12px
+      padding: 0 20px
       margin: 0 8px 0 0
-      background: var(--color-border)
+      background: var(--md-sys-color-secondary-container)
       border: 0
-      border-radius: var(--border-rounded) 0 0 var(--border-rounded)
+      border-radius: var(--md-sys-shape-corner-full)
       font-family: inherit
       font-size: 14px
-      font-weight: bold
-      color: var(--color-text-hint)
+      font-weight: 500
+      color: var(--md-sys-color-on-secondary-container)
       line-height: 1
-      transition: 0.24s cubic-bezier(0.4, 0, 0.6, 1)
+      transition: background-color var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard), color var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
 
     &:focus::file-selector-button
-      background: var(--color-primary)
-      color: var(--color-text-on-primary)
+      background: var(--md-sys-color-primary)
+      color: var(--md-sys-color-on-primary)
 
   input[disabled]
     background: transparent
@@ -130,7 +137,7 @@
 
     appearance: none
     min-width: 88px
-    height: 40px // line-height does not affect the element's height
+    height: 48px // line-height does not affect the element's height
     padding-right: 40px
     background: var(--icon-dropdown) center right 8px / 24px no-repeat
 
@@ -142,8 +149,6 @@
   label
     line-height: 1.5
 
-  .error
-
   .hint
     color: var(--color-text-disabled)
     font-size: 14px
@@ -154,15 +159,15 @@
   // #vue_tags_input
   &[class]
     .vue-tags-input
-      border-radius: var(--border-rounded)
-      box-shadow: 0 0 0 1px var(--color-border) inset
-      transition: box-shadow 0.24s cubic-bezier(0.4, 0, 0.6, 1)
+      border-radius: var(--md-sys-shape-corner-extra-small)
+      box-shadow: 0 0 0 1px var(--md-sys-color-outline) inset
+      transition: box-shadow var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
 
       &:hover
-        box-shadow: 0 0 0 2px var(--color-border) inset
+        box-shadow: 0 0 0 1px var(--md-sys-color-on-surface) inset
 
       &.ti-focus
-        box-shadow: 0 0 0 2px var(--color-primary) inset
+        box-shadow: 0 0 0 2px var(--md-sys-color-primary) inset
 
     .ti-new-tag-input-wrapper
       .ti-new-tag-input
@@ -174,10 +179,10 @@
 
     .ti-tag
       padding: 0 12px
-      background: var(--color-surface)
-      border-radius: 16px
-      color: var(--color-text-secondary)
-      font-weight: bold
+      background: var(--md-sys-color-secondary-container)
+      border-radius: var(--md-sys-shape-corner-small)
+      color: var(--md-sys-color-on-secondary-container)
+      font-weight: 500
       text-transform: capitalize
 
       .ti-actions

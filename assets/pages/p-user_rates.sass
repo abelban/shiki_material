@@ -5,6 +5,75 @@
       &::before, &::after
         color: var(--color-text-disabled)
 
+    &.mylist.mobile-desktop
+      position: static
+      display: flex
+      align-items: center
+      flex-wrap: wrap
+      justify-content: flex-start
+      gap: 8px
+      top: auto
+      right: auto
+      left: auto
+      width: 100%
+      height: auto
+      min-height: 40px
+      margin: 0 0 16px
+      background: transparent
+      border-radius: 0
+      font-size: 14px
+      font-weight: 500
+      line-height: 20px
+      text-align: left
+
+      a
+        position: static
+        display: inline-flex
+        align-items: center
+        min-height: 40px
+        padding: 0 12px
+        margin: 0
+        background: var(--md-sys-color-surface-container-low)
+        border-radius: var(--md-sys-shape-corner-full)
+        color: var(--color-link)
+        font-size: 14px
+        font-weight: 500
+        line-height: 20px
+        text-decoration: none
+
+        &::before,
+        &::after
+          display: none
+
+        &:hover
+          background: var(--md-sys-color-surface-container-high)
+
+        &:active,
+        &.selected
+          background: var(--md-sys-color-secondary-container)
+          color: var(--md-sys-color-on-secondary-container)
+
+        span
+          position: static
+          display: inline-flex
+          align-items: center
+          justify-content: center
+          min-width: 24px
+          height: 24px
+          padding: 0 6px
+          margin-left: 6px
+          background: var(--md-sys-color-surface-container-highest)
+          border-radius: var(--md-sys-shape-corner-full)
+          color: var(--color-text-secondary)
+          font-size: 12px
+          font-weight: 600
+          line-height: 24px
+          box-sizing: border-box
+
+        &.selected span
+          background: transparent
+          color: inherit
+
   .order-control
     color: var(--color-text-primary)
 
@@ -149,12 +218,13 @@
       position: absolute
       top: 0
       right: 0
-      bottom: 0
+      bottom: 47px
       left: 0
-      background-image: linear-gradient(rgba(0,0,0,.6) 0%, transparent 40%)
-      border-radius: .125rem
+      background-image: linear-gradient(rgba(0,0,0,.48) 0%, rgba(0,0,0,.24) 24%, transparent 48%)
+      border-radius: var(--border-rounded)
       opacity: 0
       pointer-events: none
+      transition: opacity var(--md-sys-motion-duration-short-4) var(--md-sys-motion-easing-standard)
 
     &:hover .b-catalog_entry::after
       opacity: 1
@@ -216,113 +286,3 @@
       &::after
         padding: 0 3px
         color: var(--color-text-disabled)
-
-
-
-// Кнопки списков сбоку
-.p-user_rates-index
-  .l-content > .mylist
-    a
-      @extend %material-icons
-      @extend %md-tooltip-right
-
-    @media (min-width: 1312px)
-      position: fixed
-      top: 240px
-      right: auto
-      width: 56px
-      margin: 0 0 0 -72px
-      background: var(--color-background)
-      border-radius: 28px 0 0 28px
-      text-align: left
-
-      a
-        position: relative
-        display: block
-        padding: 8px
-        margin: 2px 0
-        border-radius: 50% 0 0 50%
-        color: var(--color-text-hint)
-        font-size: 0
-        font-weight: normal
-        line-height: 0
-
-        &:hover
-          text-decoration: none
-
-        &::before
-          padding: 8px
-          border-radius: 50%
-
-        &:hover::before,
-        &.selected::before
-          background: var(--color-primary)
-          color: var(--color-text-on-primary)
-
-        &[data-id='planned']::before
-          content: 'today'
-
-        &[data-id='watching']::before
-          content: 'play_arrow'
-
-        &[data-id='rewatching']::before
-          content: 'replay'
-
-        &[data-id='completed']::before
-          content: 'done'
-
-        &[data-id='on_hold']::before
-          content: 'inbox'
-
-        &[data-id='dropped']::before
-          content: 'delete'
-
-
-        &::after
-          top: 0
-          height: 20px
-          margin: auto 12px
-
-        &[data-id='planned']::after
-          content: 'Запланировано'
-
-        &[data-id='watching']::after
-          content: 'Смотрю'
-
-        &[href*='/manga/'][data-id='watching']::after
-          content: 'Читаю'
-
-        &[data-id='rewatching']::after
-          content: 'Пересматриваю'
-
-        &[href*='/manga/'][data-id='rewatching']::after
-          content: 'Перечитываю'
-
-        &[data-id='completed']::after
-          content: 'Просмотрено'
-
-        &[href*='/manga/'][data-id='completed']::after
-          content: 'Прочитано'
-
-        &[data-id='on_hold']::after
-          content: 'Отложено'
-
-        &[data-id='dropped']::after
-          content: 'Брошено'
-
-        span
-          position: absolute
-          top: 0
-          right: 0
-          padding: 2px 4px
-          margin: 6px 4px
-          background: var(--color-accent)
-          border-radius: 2px
-          color: var(--color-text-on-accent)
-          font-size: 14px
-          font-weight: bold
-          line-height: .8
-
-          &::before,
-          &::after
-            display: none
