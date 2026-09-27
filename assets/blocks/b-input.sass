@@ -1,5 +1,7 @@
 // From md-textfields
 %md-textfield
+  box-sizing: border-box
+  max-width: 100%
   min-height: 48px
   padding: 12px 16px
   background: transparent
@@ -15,9 +17,6 @@
   &:hover
     box-shadow: 0 0 0 1px var(--md-sys-color-on-surface) inset
 
-  &:invalid
-    box-shadow: 0 0 0 2px var(--md-sys-color-error) inset
-
   &:focus
     box-shadow: 0 0 0 2px var(--md-sys-color-primary) inset
     outline: none
@@ -25,6 +24,10 @@
   &:focus-visible
     box-shadow: 0 0 0 2px var(--md-sys-color-primary) inset
     outline: none
+
+  &:user-invalid,
+  &[aria-invalid=true]
+    box-shadow: 0 0 0 2px var(--md-sys-color-error) inset
 
   &:disabled
     color: var(--color-text-disabled)
@@ -39,7 +42,7 @@
   &:last-child
     margin-bottom: 0
 
-  input,
+  input:where(:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=hidden]):not([type=submit]):not([type=reset]):not([type=button])),
   textarea
     @extend %md-textfield
 
@@ -64,8 +67,14 @@
       color: var(--color-text-disabled)
       line-height: inherit
 
-  // TODO: L: border-color normal #757575 disabled #BDBDBD
-  //       D: border-color normal #FFFFFF disabled rgba(255,255,255,.3)
+  input[type=checkbox],
+  input[type=radio]
+    accent-color: var(--md-sys-color-primary)
+
+    &:focus-visible
+      outline: 3px solid var(--md-sys-color-primary)
+      outline-offset: 2px
+
   input[type=checkbox]
     display: inline-block
     flex: 0 0 1.125rem
@@ -145,6 +154,12 @@
     option
       background: var(--color-background)
       color: var(--color-text-primary)
+
+  select[multiple]
+    height: auto
+    min-height: 120px
+    padding-right: 16px
+    background-image: none
 
   label
     line-height: 1.5

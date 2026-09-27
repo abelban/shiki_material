@@ -6,3 +6,5 @@ import/main.sass
 src/
 vendor/
 index.html
+node_modules/
+.DS_Store

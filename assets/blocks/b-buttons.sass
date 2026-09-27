@@ -18,6 +18,12 @@
       box-shadow: var(--md-sys-elevation-level-0)
       color: var(--color-text-on-primary)
 
+    &.disabled,
+    &[disabled]
+      background-color: var(--color-surface-active)
+      box-shadow: none
+      color: var(--color-text-disabled)
+
   &.is-arrow
     &::after
       padding-left: 8px
@@ -28,16 +34,6 @@
     margin: 0
 
 a.b-button
-  color: var(--color-primary)
-
-  @media (min-width: 1025px)
-    &:hover
-      color: var(--color-primary)
-
-  &:active
-    color: var(--color-primary)
-
-
   & + .b-js-link,
   // Кнопка отмена (Клуб > Настройки > Страницы)
   & + .cancel

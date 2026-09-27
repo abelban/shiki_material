@@ -1,0 +1,12 @@
+{
+  "name": "shiki-material3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check"
+  },
+  "devDependencies": {
+    "sass": "1.105.0"
+  }
+}

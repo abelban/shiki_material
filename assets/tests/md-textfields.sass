@@ -4,6 +4,9 @@
 .b-input input[type=email],
 .b-input input[type=number],
 .b-input input[type=password],
+.b-input input[type=search],
+.b-input input[type=tel],
+.b-input input:not([type]),
 .b-input input[type=text],
 .b-input input[type=url]
   height: 56px
@@ -12,11 +15,7 @@
   border: 0
   border-radius: var(--md-sys-shape-corner-extra-small) var(--md-sys-shape-corner-extra-small) 0 0
   caret-color: var(--md-sys-color-primary)
-  cursor: pointer
-
-  &:focus,
-  &:not(:placeholder-shown)
-    cursor: text
+  cursor: text
 
 
 
@@ -36,6 +35,8 @@
 
 .b-input textarea,
 .b-shiki_editor .body .editor textarea
+  box-sizing: border-box
+  max-width: 100%
   height: 56px
   min-height: 56px
   padding: 16px !important
@@ -43,11 +44,7 @@
   border: 0
   border-radius: var(--md-sys-shape-corner-extra-small) var(--md-sys-shape-corner-extra-small) 0 0
   caret-color: var(--md-sys-color-primary)
-  cursor: pointer
-
-  &:focus,
-  &:not(:placeholder-shown)
-    cursor: text
+  cursor: text
 
 // Фикс для поля ввода стилей в настройках
 .b-edit_styles .edit_style .style_css textarea,
@@ -57,7 +54,7 @@
 
 
 // Полосы для форм ввода
-.b-input input,
+.b-input input:where(:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=hidden]):not([type=submit]):not([type=reset]):not([type=button])),
 .b-input select,
 .b-input textarea,
 .b-shiki_editor .body .editor textarea
@@ -70,14 +67,21 @@
   &:focus
     box-shadow: 0 -2px 0 0 var(--md-sys-color-primary) inset
 
-  &:invalid
-    box-shadow: 0 -2px 0 0 var(--md-sys-color-error) inset !important
+  &:user-invalid,
+  &[aria-invalid=true]
+    box-shadow: 0 -2px 0 0 var(--md-sys-color-error) inset
 
   &:disabled
-    background-color: var(--md-sys-color-surface-container)
+    background-color: var(--md-sys-color-surface-container) !important
     color: var(--color-text-disabled)
     opacity: 1
     box-shadow: 0 -1px 0 0 var(--md-sys-color-outline-variant) inset
+
+.b-input select[multiple]
+  height: auto
+  min-height: 120px
+  padding-right: 16px
+  background-image: none
 
 .b-input[class] .vue-tags-input
   background: var(--md-sys-color-surface-container-highest)
@@ -90,9 +94,3 @@
 
   &.ti-focus
     box-shadow: 0 -2px 0 0 var(--md-sys-color-primary) inset
-
-.b-input input[type=checkbox],
-.b-input input[type=radio]
-  min-height: 0
-  padding: 0
-  box-shadow: none
